@@ -26,19 +26,18 @@ args.names = [f"S{i + 1}" for i in range(args.database.subj_number)]
 args.random_seed = time.time()
 
 # 模型相关参数
-args.model_path = f"models.LSTM_SA.lstm_v3"
-args.need_sa = True
-args.snn_process = False
-args.vth = 0.5
-# args.tau_mem = math.exp(-1 / 128 / 0.005)
-# args.tau_syn = math.exp(-1 / 128 / 0.005)
-args.tau_mem = 0.25
-args.tau_syn = 0.25
-print(args.tau_mem, " ", args.tau_syn)
+args.model_path = f"models.LSTM_SA.lstm_v3_update"
+args.model_meta = DotMap(
+    need_sa=False,
+    snn_process=True,
+    vth=0.5,
+    tau_mem=0.25,
+    tau_syn=0.25
+)
 
 # 处理步骤
 args.proc_steps = [
-    preproc, trails_split, hold_on_divide,
+    read_data, select_labels, trails_split, hold_on_divide,
     get_model, get_data_loader, trainer, save, tester
 ]
 
@@ -51,6 +50,7 @@ args.early_patience = 0
 
 # preproc meta
 args.preproc_meta = PreprocMeta(
+    need_voice=False,
     label_type="direction"
 )
 
@@ -58,7 +58,7 @@ args.preproc_meta = PreprocMeta(
 tl = 0.5
 args.split_meta = SplitMeta(
     time_len=tl,
-    time_lap=0.2 if "DTU" in args.data_document_path else 0.5,
+    time_lap=0.2 if "DTU" == args.database.name else 0.5,
     # overlap=0 if tl < 0.5 else None,
     tes_pct=0.2,
     valid_pct=0

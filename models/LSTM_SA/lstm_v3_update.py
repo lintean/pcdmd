@@ -16,6 +16,7 @@ class Model(nn.Module):
         self.local = local
         self.batch_size = None
         self.need_sa = local.model_meta.need_sa
+        self.need_lstm = local.model_meta.need_lstm
         self.lstm_hidden = 10
         self.multiband = local.data_meta.eeg_band > 1
         from eutils.snn.stbp.setting import SNNParameters
@@ -200,9 +201,12 @@ class Model(nn.Module):
 
         # eeg shape: (Batch, Channel, Time)
         # lstm
-        eeg = eeg.permute(eeg_index[-1:] + eeg_index[:-1]).contiguous()
-        lstm_output, new_state = self.lstm(eeg)
-        lstm_output = lstm_output.permute(eeg_index[1:] + eeg_index[:1]).contiguous()
+        if self.need_lstm:
+            eeg = eeg.permute(eeg_index[-1:] + eeg_index[:-1]).contiguous()
+            lstm_output, new_state = self.lstm(eeg)
+            lstm_output = lstm_output.permute(eeg_index[1:] + eeg_index[:1]).contiguous()
+        else:
+            lstm_output = eeg
 
         # eeg shape: (Batch, Channel, Time)
         output = lstm_output

@@ -10,10 +10,13 @@
 import copy
 import math
 import random
-from typing import List
+import sys
+from typing import List, Dict
 import numpy as np
+import pandas as pd
 from dotmap import DotMap
 from eutils.container import AADData, SplitMeta, DecisionWindow, DataMeta
+from eutils.util import read_json
 
 
 def preproc(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, DotMap]:
@@ -37,6 +40,104 @@ def preproc(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, Dot
             local.data_meta = meta
             data = AADData(eeg=eeg, audio=audio, labels=labels, meta=meta)
             return data, args, local
+
+
+def read_data(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, DotMap]:
+    """
+    从已经预处理好的数据中读取EEG、语音以及相关的meta
+    读取EEG+语音
+    @param data: 占位符
+    @param args: 全局meta
+    @param local: subject个人meta
+    @return:
+    """
+
+    def get_split_data(data, meta: DataMeta):
+        if isinstance(data, pd.DataFrame):
+            sound = data.iloc[:, 0:meta.wav_chan]
+            sound_not_target = data.iloc[:, meta.wav_chan:meta.wav_chan * 2]
+            EEG = data.iloc[:, 2 * meta.wav_chan:]
+            return sound, EEG, sound_not_target
+        else:
+            sys.exit()
+
+    path = args.data_document_path
+
+    # read metadata
+    dm = read_json(f"{path}/metadata.json")
+    meta = DataMeta(
+        dataset=args.database.name,
+        subj_id=local.name[1:],
+        trail_num=dm['trail_number'],
+        con_type=args.ConType,
+        eeg_fs=dm['fs'] if 'eeg_fs' not in dm else dm['eeg_fs'],
+        wav_fs=dm['fs'] if 'audio_fs' not in dm else dm['audio_fs'],
+        eeg_band=dm['eeg_band'],
+        eeg_band_chan=dm['eeg_channel_per_band'],
+        wav_band=dm['audio_band'],
+        wav_band_chan=dm['audio_channel_per_band'],
+    )
+
+    # read data
+    # 将不同声学环境的数据当成额外增加的trail
+    eeg, audio, labels = [], [], []
+    for con_type in meta.con_type:
+        label = pd.read_csv(f"{path}/csv/{local.name}{con_type.value}.csv")
+        label = label.to_numpy()
+        for k in range(meta.trail_num):
+            filename = f"{path}/{con_type.value}/{local.name}Tra{k + 1}.csv"
+            data_pf = pd.read_csv(filename, header=None)
+
+            wav1, EEG_data, wav2 = get_split_data(data_pf, meta)
+            eeg.append(EEG_data.to_numpy(dtype=np.float32))
+            # DTU:0是男女信息，1是方向信息; KUL:0是方向信息，1是人物信息
+            if "KUL" == args.database.name:
+                labels.append({
+                    'direction': label[k][0] - 1,
+                    'speaker': label[k][1] - 1
+                })
+            elif "DTU" == args.database.name:
+                labels.append({
+                    'direction': label[k][1] - 1,
+                    'speaker': label[k][0] - 1
+                })
+            else:
+                raise ValueError('数据库不属于已知（KUL、DTU）')
+
+            if local.preproc_meta.need_voice:
+                # 如果是KUL 先把attend换回来
+                if "KUL" == args.database.name:
+                    wav1, wav2 = wav2, wav1
+
+                audio.append([
+                    wav1.to_numpy(dtype=np.float32),
+                    wav2.to_numpy(dtype=np.float32)
+                ])
+
+    if not local.preproc_meta.need_voice:
+        audio = None
+
+    local.data_meta = meta
+    data = AADData(eeg=eeg, audio=audio, pre_lbl=labels, meta=meta)
+    return data, args, local
+
+
+def ds_labels(audio: List[List[np.ndarray]], pre_lbl: List[Dict], label_type: str):
+    labels = []
+    for i in range(len(pre_lbl)):
+        labels.append(pre_lbl[i][label_type])
+        if audio is not None and pre_lbl[i][label_type] == 1:
+            audio[i][0], audio[i][1] = audio[i][1], audio[i][0]
+
+    return audio, labels
+
+
+def select_labels(data: AADData, args: DotMap, local: DotMap) -> tuple[AADData, DotMap, DotMap]:
+    audio, labels = ds_labels(data.audio, data.pre_lbl, local.preproc_meta.label_type)
+    data.audio = audio
+    data.labels = labels
+
+    return data, args, local
 
 
 def window_split(data: AADData, split_meta: SplitMeta, **kwargs):

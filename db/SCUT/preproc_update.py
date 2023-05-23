@@ -41,9 +41,9 @@ def preprocess(dataset_name="SCUT", sub_id="1", eeg_lf: int or List[int] = 1, ee
         is_ica: 是否进行ICA处理
 
     Returns:
-        eeg：列表，每个列表包含1个Trail的脑电数据，每个Trail为Time*Channels
-        voice：列表，每个列表包含1个Trail的语音数据，每个Trail为Time*2。第一列为左侧音频，第二列为右侧音频
-        label：列表，每个列表包含1个Trail的标签，每个标签包含[方位、讲话者]，均以0、1标记。
+        eeg：list，each item is a trail: np.array[Time*Channels]
+        voice：list，each item is a trail: list[np.array(Time*Channels)], the first one is attend
+        label：list，each item is a trail: list[方位、讲话者]，以0、1标记
 
     """
 
@@ -133,6 +133,7 @@ def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speak
 def data_loader(dataset_name, sub_id):
     """
     读取原始数据。
+    输出的音频的第一个是左边，第二个是右边
     Args:
         dataset_name: 数据库名称
         sub_id: 需要提取的受试者编号

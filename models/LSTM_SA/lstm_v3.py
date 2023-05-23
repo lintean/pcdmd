@@ -12,7 +12,7 @@ import norse.torch.module.lif
 
 
 class Model(nn.Module):
-    def __init__(self, args: DotMap):
+    def __init__(self, local: DotMap):
         super(Model, self).__init__()
         self.args = args
         self.need_sa = args.need_sa

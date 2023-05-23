@@ -67,7 +67,7 @@ def init(name, log_path, local, args):
     return local, args
 
 
-def main(name: str = "S1", log_path: str = "./result/test", local: DotMap = DotMap(), args: DotMap = DotMap()):
+def main(name: str = "S1", log_path: str = "./result/test", local: DotMap = DotMap(), args: DotMap = None):
     local, args = init(name, log_path, local, args)
 
     # 设定流程：

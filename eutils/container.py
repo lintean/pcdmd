@@ -40,11 +40,11 @@ class DataMeta:
 
     eeg_band: int = 1
     eeg_band_chan: int = 64
-    eeg_chan: int = 64
+    eeg_chan: int = None
     wav_band: int = 1
     wav_band_chan: int = 1
-    wav_chan: int = 1
-    chan_num: int = 66
+    wav_chan: int = None
+    chan_num: int = None
 
     def __post_init__(self):
         if not isinstance(self.dataset, AADDataset):
@@ -53,6 +53,10 @@ class DataMeta:
         for i in range(len(self.con_type)):
             if not isinstance(self.con_type[i], ConType):
                 self.con_type[i] = ConType(self.con_type[i])
+
+        self.eeg_chan = self.eeg_band * self.eeg_band_chan
+        self.wav_chan = self.wav_band * self.wav_band_chan
+        self.chan_num = self.eeg_chan + self.wav_chan * 2
 
     def __iter__(self):
         return self.__dict__
@@ -120,6 +124,8 @@ class AADData:
     # 默认第一个是attend
     audio: List[List[np.ndarray]] or np.ndarray = None
     eeg: List[np.ndarray] or np.ndarray = None
+    # pre_lbl和labels 取值从0开始
+    pre_lbl: List[Dict] = None
     labels: List[int] or np.ndarray = None
     windows: List[List[DecisionWindow]] = None
     tng_win: List[DecisionWindow] = None
