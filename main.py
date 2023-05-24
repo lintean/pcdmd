@@ -45,11 +45,12 @@ def get_logger(name, log_path):
 
 
 def init(name, log_path, local, args):
+    logger = get_logger(name, log_path)
+
     if not args:
         module = importlib.import_module(f"parameters")
         args = module.args
-
-    logger = get_logger(name, log_path)
+        logger.info(f"read parameters from ./parameters.py")
 
     local.name = name
     local.log_path = log_path
@@ -77,7 +78,7 @@ def main(name: str = "S1", log_path: str = "./result/test", local: DotMap = DotM
 
     data = None
     for proc in args.proc_steps:
-        local.logger.info("working process: " + proc.__name__)
+        local.logger.info(f"working process: {proc.__name__}")
         data, args, local = proc(data=data, args=args, local=local)
 
 

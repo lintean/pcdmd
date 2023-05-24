@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4ca806-d104-4562-af46-0adcd9829e15" name="Default Changelist" comment="Default Changelist">
+    <list default="true" id="db4ca806-d104-4562-af46-0adcd9829e15" name="Default Changelist" comment="Add new version support for reading preprocessed data directly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/SCUT/preproc_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/SCUT/preproc_update.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/container.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/container.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/update_split_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/update_split_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param_update.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multiple_train_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_train_update.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -530,7 +526,7 @@
       <workItem from="1682150247661" duration="700000" />
       <workItem from="1682263392015" duration="6000" />
       <workItem from="1684484548878" duration="1119000" />
-      <workItem from="1684820246403" duration="13326000" />
+      <workItem from="1684820246403" duration="23968000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1684821002917</created>
@@ -553,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684823844398</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add new version support for reading preprocessed data directly">
+      <created>1684849327831</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684849327831</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +581,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Default Changelist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
+    <MESSAGE value="Add new version support for reading preprocessed data directly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new version support for reading preprocessed data directly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -708,6 +712,21 @@
           <line>56</line>
           <option name="timeStamp" value="395" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/eutils/update_split_utils.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="422" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>52</line>
+          <option name="timeStamp" value="423" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/multiple_train_update.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="424" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -732,7 +751,7 @@
     <SUITE FILE_PATH="coverage/1_sep_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1679318081883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mb_plus_without_cnn_py$Demo.coverage" NAME="Demo 覆盖结果" MODIFIED="1646639329877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/GraduationDesign" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$0_5.coverage" NAME="0.5 覆盖结果" MODIFIED="1666702335224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Document/wechat/WeChat Files/wxid_eko059vksxg222/FileStorage/File/2022-10" />
-    <SUITE FILE_PATH="coverage/scut_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1684849175111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scut_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1684934800284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mb_plus_without_cnn_py$run_model.coverage" NAME="run_model 覆盖结果" MODIFIED="1642323774497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$tsne_start.coverage" NAME="tsne_start 覆盖结果" MODIFIED="1654531311638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/tsne" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$train.coverage" NAME="train 覆盖结果" MODIFIED="1678120002007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

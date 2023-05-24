@@ -28,7 +28,8 @@ args.random_seed = time.time()
 # 模型相关参数
 args.model_path = f"models.LSTM_SA.lstm_v3_update"
 args.model_meta = DotMap(
-    need_sa=False,
+    need_sa=True,
+    need_lstm=True,
     snn_process=True,
     vth=0.5,
     tau_mem=0.25,
@@ -37,7 +38,7 @@ args.model_meta = DotMap(
 
 # 处理步骤
 args.proc_steps = [
-    read_data, select_labels, trails_split, hold_on_divide,
+    read_data, select_labels, trails_split, cv_divide,
     get_model, get_data_loader, trainer, save, tester
 ]
 
@@ -55,11 +56,12 @@ args.preproc_meta = PreprocMeta(
 )
 
 # split meta
-tl = 0.5
 args.split_meta = SplitMeta(
-    time_len=tl,
+    time_len=1,
     time_lap=0.2 if "DTU" == args.database.name else 0.5,
     # overlap=0 if tl < 0.5 else None,
+    cv_flod=5,
+    # curr_flod=0,
     tes_pct=0.2,
     valid_pct=0
 )
