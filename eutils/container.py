@@ -84,7 +84,7 @@ class DecisionWindow:
 class SplitMeta:
     time_len: float = 1
     time_lap: float = None
-    overlap: float = 0.0
+    overlap: float = None
     delay: int = 0
     cv_flod: int = None
     curr_flod: int = None
@@ -92,6 +92,9 @@ class SplitMeta:
     valid_pct: float = 0.0
 
     def __post_init__(self):
+        if self.time_lap is None and self.overlap is None:
+            raise ValueError("time_lap or overlap in SplitMeta must not be empty")
+
         if self.overlap is not None:
             self.time_lap = self.time_len * (1 - self.overlap)
 

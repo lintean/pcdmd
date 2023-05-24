@@ -50,7 +50,7 @@ def init(name, log_path, local, args):
     if not args:
         module = importlib.import_module(f"parameters")
         args = module.args
-        logger.info(f"read parameters from ./parameters.py")
+        logger.info(f"read {module.__name__} from {module.__file__}")
 
     local.name = name
     local.log_path = log_path

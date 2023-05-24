@@ -56,9 +56,8 @@ args.preproc_meta = PreprocMeta(
 )
 
 # split meta
-tl = 1
 args.split_meta = SplitMeta(
-    time_len=tl,
+    time_len=1,
     time_lap=0.2 if "DTU" == args.database.name else 0.5,
     # overlap=0 if tl < 0.5 else None,
     # cv_flod=5,
