@@ -67,7 +67,7 @@ def multiple_process(names, func, multiple, second):
             _local.shared_data_meta = DotMap(name=shared_data.name, shape=datas.shape, dtype=datas.dtype)
             _local.shared_window_meta = DotMap(name=shared_window.name, shape=windows.shape, dtype=windows.dtype)
             _local.shared_meta_meta = DotMap(name=shared_meta.name, shape=metadata.shape, dtype=metadata.dtype)
-        p = Process(target=func, args=(name, _log_path, _local, args))  # 必须加,号
+        p = Process(target=func, args=(name, _log_path, _local, copy.deepcopy(args)))  # 必须加,号
         p.start()
         time.sleep(wait)
         process.append(p)
@@ -234,6 +234,7 @@ def loopMonitor():
         else:
             for i in range(args.split_meta.cv_flod):
                 current_flod = i
+                args.split_meta.curr_flod = i
                 train()
                 output_result()
 

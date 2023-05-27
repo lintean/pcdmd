@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4ca806-d104-4562-af46-0adcd9829e15" name="Default Changelist" comment="Fix the problem of parameter passing in multi-process operation">
+    <list default="true" id="db4ca806-d104-4562-af46-0adcd9829e15" name="Default Changelist" comment="Fix the problem that the overlap in SplitMeta does not default to None">
+      <change afterPath="$PROJECT_DIR$/ecode/ICA_vi/ica_plot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecode/ICA_vi/ica_vi.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/peiwen.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/peiwen.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/container.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/container.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/update_split_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/update_split_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param_update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multiple_train_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_train_update.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -73,7 +77,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/parameters_backup/LSTM_SA/lstm_v3.py" />
   </component>
   <component name="RecentsManager">
@@ -92,7 +96,7 @@
       <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\ecode\util" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.ica_plot">
     <configuration name="0.5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="peiwen" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,6 +155,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ecode/cma_statistics/cos_analysis.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ica_plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="peiwen" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ecode/ICA_vi" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ecode/ICA_vi/ica_plot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -393,9 +419,11 @@
       <item itemvalue="Python.inceptionv2" />
       <item itemvalue="Python.0.5" />
       <item itemvalue="Python.cos_analysis" />
+      <item itemvalue="Python.ica_plot" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ica_plot" />
         <item itemvalue="Python.cos_analysis" />
         <item itemvalue="Python.0.5" />
         <item itemvalue="Python.inceptionv2" />
@@ -525,7 +553,8 @@
       <workItem from="1682150247661" duration="700000" />
       <workItem from="1682263392015" duration="6000" />
       <workItem from="1684484548878" duration="1119000" />
-      <workItem from="1684820246403" duration="25195000" />
+      <workItem from="1684820246403" duration="27841000" />
+      <workItem from="1685192923983" duration="7165000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1684821002917</created>
@@ -562,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684938092817</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix the problem that the overlap in SplitMeta does not default to None">
+      <created>1684939131287</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684939131287</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +625,8 @@
     <MESSAGE value="Default Changelist" />
     <MESSAGE value="Add new version support for reading preprocessed data directly" />
     <MESSAGE value="Fix the problem of parameter passing in multi-process operation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix the problem of parameter passing in multi-process operation" />
+    <MESSAGE value="Fix the problem that the overlap in SplitMeta does not default to None" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the problem that the overlap in SplitMeta does not default to None" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -613,11 +650,6 @@
           <url>file://$PROJECT_DIR$/ecode/GraduationDesign/neural_networks.py</url>
           <line>34</line>
           <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/eutils/util.py</url>
-          <line>372</line>
-          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ecode/visual_circos/test.py</url>
@@ -719,11 +751,6 @@
           <line>56</line>
           <option name="timeStamp" value="395" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/multiple_train_update.py</url>
-          <line>69</line>
-          <option name="timeStamp" value="424" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -754,6 +781,7 @@
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$train.coverage" NAME="train 覆盖结果" MODIFIED="1678120002007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$cos_analysis.coverage" NAME="cos_analysis 覆盖结果" MODIFIED="1669641669564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/cma_statistics" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$inceptionv2.coverage" NAME="inceptionv2 覆盖结果" MODIFIED="1658981542224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Document/wechat/WeChat Files/wxid_eko059vksxg222/FileStorage/MsgAttach/1bff033811ea4cad3cdffe03175d3189/File/2022-07" />
+    <SUITE FILE_PATH="coverage/scut_py$ica_plot.coverage" NAME="ica_plot 覆盖结果" MODIFIED="1685203289663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/ICA_vi" />
     <SUITE FILE_PATH="coverage/CNN_normal_py$visualization.coverage" NAME="visualization Coverage Results" MODIFIED="1623140709116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/GraduationDesign" />
     <SUITE FILE_PATH="coverage/CNN_normal_py$run_model.coverage" NAME="run_model Coverage Results" MODIFIED="1626335038240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CNN_conference_py$CNN_normal.coverage" NAME="CNN_normal 覆盖结果" MODIFIED="1652803922612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

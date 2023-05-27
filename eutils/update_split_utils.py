@@ -194,6 +194,7 @@ def cv_divide(data: AADData, args: DotMap, local: DotMap) -> tuple[AADData, DotM
     tng_win, tes_win = cv_func(data=data, split_meta=args.split_meta, random_seed=args.random_seed)
     data.tng_win = tng_win
     data.tes_win = tes_win
+    local.logger.info(f'{args.split_meta.curr_flod} of cv{args.split_meta.cv_flod}')
     return data, args, local
 
 

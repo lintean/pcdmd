@@ -28,7 +28,7 @@ args.random_seed = time.time()
 # 模型相关参数
 args.model_path = f"models.LSTM_SA.lstm_v3_update"
 args.model_meta = DotMap(
-    need_sa=True,
+    need_sa=False,
     need_lstm=True,
     snn_process=True,
     vth=0.5,
