@@ -15,8 +15,7 @@ from multiprocessing.managers import SharedMemoryManager
 import copy
 
 logger = 0
-result_document = "./result/"
-all_names = None
+result_document = "./result"
 
 # 参数
 args = None
@@ -24,6 +23,8 @@ max_procedure = 18
 current_flod = 0
 need_shared_menory = False
 file_name = ""
+isCV = False
+wait = 120
 
 
 def share_menory(smm, data):
@@ -34,42 +35,20 @@ def share_menory(smm, data):
 
 
 def multiple_process(names, func, multiple, second):
-    _log_path = result_document + args.label if args.cross_validation_fold <= 1 else result_document + args.label + "/flod_" + str(
-        current_flod)
-
+    _log_path = f"{result_document}/{args.label}"
+    _log_path += "" if not isCV else f"/flod_{current_flod}"
 
     if need_shared_menory:
-        from split import split_data
-        # 这里只考虑跨被试
-        datas = []
-        windows = []
-        metadata = None
-        for name in names:
-            _local = DotMap(current_flod=current_flod)
-            data, train_window, test_window, window_metadata = split_data(name, _log_path, args=args,
-                                                                          local=_local)
-            datas.append(data)
-            windows.append(train_window)
-            metadata = window_metadata if metadata is None else metadata
-        datas = np.stack(datas, axis=0)
-        windows = np.stack(windows, axis=0)
-
-        smm = SharedMemoryManager()
-        smm.start()
-        shared_data = share_menory(smm, datas)
-        shared_window = share_menory(smm, windows)
-        shared_meta = share_menory(smm, metadata)
+        pass
 
     process = []
     for name in names:
         _local = DotMap(current_flod=current_flod, core_logger=logger)
         if need_shared_menory:
-            _local.shared_data_meta = DotMap(name=shared_data.name, shape=datas.shape, dtype=datas.dtype)
-            _local.shared_window_meta = DotMap(name=shared_window.name, shape=windows.shape, dtype=windows.dtype)
-            _local.shared_meta_meta = DotMap(name=shared_meta.name, shape=metadata.shape, dtype=metadata.dtype)
-        p = Process(target=func, args=(name, _log_path, _local))  # 必须加,号
+            pass
+        p = Process(target=func, args=(name, _log_path, _local, copy.deepcopy(args)))  # 必须加,号
         p.start()
-        time.sleep(10)
+        time.sleep(wait)
         process.append(p)
         util.monitor(process, multiple, second)
 
@@ -125,16 +104,22 @@ def MonitorParameters():
 
 def init():
     import parameters
+    from eutils.update_split_utils import cv_divide
     reload(parameters)
     global args
-    global all_names
+    global isCV
     args = copy.deepcopy(parameters.args)
-    all_names = ["S" + str(i + 1) for i in range(parameters.args.people_number)]
+    isCV = False
+    for func in args.proc_steps:
+        if cv_divide.__name__ == func.__name__:
+            isCV = True
 
-    if os.path.exists(result_document + args.label):
-        args.label = args.label + "_" + time.strftime("%Y-%m-%d_%H_%M_%S", time.localtime())
-    os.mkdir(result_document + args.label)
-    shutil.copy("./parameters.py", result_document + args.label + "/" + parameters.args.label + ".py")
+    if os.path.exists(f"{result_document}/{args.label}"):
+        args.label = f"{args.label}_{time.strftime('%Y-%m-%d_%H_%M_%S', time.localtime())}"
+    save_path = f"{result_document}/{args.label}"
+
+    os.mkdir(save_path)
+    shutil.copy("./parameters.py", f"{save_path}/{args.label}.py")
 
     reload(logging)
     global logger
@@ -143,7 +128,7 @@ def init():
     logger.setLevel(logging.INFO)
 
     # 第二步，创建一个handler，用于写入日志文件
-    logfile = result_document + args.label + "/logger.txt"
+    logfile = f"{save_path}/logger.txt"
     fh = logging.FileHandler(logfile, mode='w')
     fh.setLevel(logging.DEBUG)
 
@@ -166,8 +151,8 @@ def init():
 def output_result():
     output = "result: \n"
     totle = 0
-    _log_path = result_document + args.label if args.cross_validation_fold <= 1 else result_document + args.label + "/flod_" + str(
-        current_flod)
+    _log_path = f"{result_document}/{args.label}"
+    _log_path += "" if not isCV else f"/flod_{current_flod}"
     for i in range(len(args.names)):
         filename = _log_path + "/Train_" + args.names[i] + ".log"
         _str = __get_last_line(filename).decode()
@@ -183,7 +168,7 @@ def output_result():
 
 
 def train():
-    from train import main as model_training
+    from main import main as model_training
     logger.info("train start!")
     multiple_process(args.names, model_training, max_procedure, 60)
     logger.info("train finish!")
@@ -221,13 +206,14 @@ def loopMonitor():
     while True:
         MonitorParameters()
         init()
-        if "current_flod" in args:
-            current_flod = args.current_flod
+        if not isCV or args.split_meta.curr_flod is not None:
+            current_flod = args.split_meta.curr_flod
             train()
             output_result()
         else:
-            for i in range(args.cross_validation_fold):
+            for i in range(args.split_meta.cv_flod):
                 current_flod = i
+                args.split_meta.curr_flod = i
                 train()
                 output_result()
 

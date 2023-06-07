@@ -26,7 +26,7 @@ args.names = [f"S{i + 1}" for i in range(args.database.subj_number)]
 args.random_seed = time.time()
 
 # 模型相关参数
-args.model_path = f"models.LSTM_SA.lstm_v3_update"
+args.model_path = f"models.LSTM_SA.lstm_v3"
 args.model_meta = DotMap(
     need_sa=False,
     snn_process=True,

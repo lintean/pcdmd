@@ -4,34 +4,35 @@ import torch.nn as nn
 import torch
 from dotmap import DotMap
 
+from eutils.container import AADModel
 from eutils.snn.stbp.functional import TdBatchNorm1d, ModuleLayer, LILinearCell
 from eutils.snn.stbp.lsnn_stbp import LSNNRecurrent, LSNNParameters
 from eutils.snn.stbp.neurons import LIF
-from eutils.torch.container import AADModel
-import norse.torch.module.lif
 
 
 class Model(nn.Module):
     def __init__(self, local: DotMap):
         super(Model, self).__init__()
-        self.args = args
-        self.need_sa = args.need_sa
+        self.local = local
+        self.batch_size = None
+        self.need_sa = local.model_meta.need_sa
+        self.need_lstm = local.model_meta.need_lstm
         self.lstm_hidden = 10
-        self.multiband = args.eeg_band > 1
+        self.multiband = local.data_meta.eeg_band > 1
         from eutils.snn.stbp.setting import SNNParameters
         self.sp = SNNParameters(
-            snn_process=args.snn_process,
+            snn_process=local.model_meta.snn_process,
             vth_dynamic=False,
-            vth_init=args.vth,
-            tau_mem=args.tau_mem,
-            tau_syn=args.tau_syn,
+            vth_init=local.model_meta.vth,
+            tau_mem=local.model_meta.tau_mem,
+            tau_syn=local.model_meta.tau_syn,
             vth_low=0.1,
             vth_high=0.9,
             vth_random_init=False
         )
         self.attn_hidden = self.lstm_hidden
-        self.input_size = args.eeg_channel_per_band
-        self.step = args.window_length
+        self.input_size = local.data_meta.eeg_band_chan
+        self.step = int(local.split_meta.time_len * local.data_meta.eeg_fs)
         self.output_size = 2
         self.left = 4
         self.right = 4
@@ -62,7 +63,7 @@ class Model(nn.Module):
         self.embedding_front_s = ModuleLayer(self.embedding_front, sp=self.sp, bn=self.BNi)
         self.embedding_back_s = ModuleLayer(self.embedding_back, sp=self.sp)
         # self.classify_s = slayers.ModuleLayer(self.classify, sp=self.sp, bn=self.BN2)
-        self.classify_s = LILinearCell(self.lstm_hidden * args.eeg_band, self.output_size, sp=self.sp)
+        self.classify_s = LILinearCell(self.lstm_hidden * local.data_meta.eeg_band, self.output_size, sp=self.sp)
         self.embedding_query_s = ModuleLayer(self.embedding_query, sp=self.sp, bn=self.BNq)
         self.embedding_key_s = ModuleLayer(self.embedding_key, sp=self.sp, bn=self.BNk)
         self.embedding_value_s = ModuleLayer(self.embedding_value, sp=self.sp, bn=self.BNv)
@@ -121,10 +122,10 @@ class Model(nn.Module):
         qf = q.permute(0, 2, 1).unsqueeze(2)
         conv = nn.Unfold(kernel_size=(self.lstm_hidden, self.left + 1 + self.right), padding=(0, self.left))
         kf = conv(k.unsqueeze(1))
-        kf = kf.view(self.args.batch_size, self.lstm_hidden, self.left + 1 + self.right, kf.shape[-1])
+        kf = kf.view(self.batch_size, self.lstm_hidden, self.left + 1 + self.right, kf.shape[-1])
         kf = kf.permute(0, 3, 1, 2)
         vf = conv(v.unsqueeze(1))
-        vf = vf.view(self.args.batch_size, self.lstm_hidden, self.left + 1 + self.right, vf.shape[-1])
+        vf = vf.view(self.batch_size, self.lstm_hidden, self.left + 1 + self.right, vf.shape[-1])
         vf = vf.permute(0, 3, 2, 1)
 
         attn_weights = torch.matmul(qf, kf)
@@ -174,12 +175,12 @@ class Model(nn.Module):
         visualization_weights = []
         # visualization_weights.append(DotMap(data=data[0].transpose(1, 2).clone(), title="A", need_save=True,
         #                                     figsize=[data[0].shape[1] * 2, data[0].shape[2] * 2]))
-
+        self.batch_size = beeg.shape[0]
         eeg = beeg
 
         # 多频带分离
         if self.multiband:
-            eeg = eeg.view(self.args.batch_size, self.args.eeg_band, self.args.eeg_channel_per_band, self.step)
+            eeg = eeg.view(self.batch_size, self.local.data_meta.eeg_band, self.local.data_meta.eeg_band_chan, self.step)
         eeg_index = [i for i in range(len(eeg.shape))]
 
         # 这里可能需要一个编码器 v1lif性能明显下降 约60% v2bsa 失败
@@ -200,9 +201,12 @@ class Model(nn.Module):
 
         # eeg shape: (Batch, Channel, Time)
         # lstm
-        eeg = eeg.permute(eeg_index[-1:] + eeg_index[:-1]).contiguous()
-        lstm_output, new_state = self.lstm(eeg)
-        lstm_output = lstm_output.permute(eeg_index[1:] + eeg_index[:1]).contiguous()
+        if self.need_lstm:
+            eeg = eeg.permute(eeg_index[-1:] + eeg_index[:-1]).contiguous()
+            lstm_output, new_state = self.lstm(eeg)
+            lstm_output = lstm_output.permute(eeg_index[1:] + eeg_index[:1]).contiguous()
+        else:
+            lstm_output = eeg
 
         # eeg shape: (Batch, Channel, Time)
         output = lstm_output
@@ -210,7 +214,7 @@ class Model(nn.Module):
         # output = self.spike_sigmoid(output)
 
         if self.multiband:
-            output = output.view(self.args.batch_size, -1, self.step)
+            output = output.view(self.batch_size, -1, self.step)
 
         if self.sp.snn_process:
             so = None
@@ -235,12 +239,12 @@ class Model(nn.Module):
         return output, targets, visualization_weights
 
 
-def get_model(args: DotMap) -> AADModel:
-    model = Model(args)
+def get_model(local: DotMap) -> AADModel:
+    model = Model(local)
     aad_model = AADModel(
         model=model,
         loss=nn.CrossEntropyLoss(),
-        optim=torch.optim.Adam(model.parameters(), lr=args.lr),
+        optim=torch.optim.Adam(model.parameters(), lr=local.lr),
         sched=None,
         dev=torch.device('cpu')
     )
