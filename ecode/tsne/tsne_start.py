@@ -4,7 +4,7 @@ from dotmap import DotMap
 from ecfg import project_root_path
 # 主要用到了openTSNE的库
 from openTSNE import TSNE
-import eutils.TSNEUtil as TSNEUtil
+import eutils.tsne as TSNEUtil
 import os
 from fnmatch import fnmatch
 import matplotlib.pyplot as plt

@@ -68,3 +68,25 @@ def sortVectorByEigs(egIndex, Ut):
     Ut = np.array(tmp[0])
 
     return Ut
+
+
+def csp_dot(w_csp, x):
+    # CSP处理过程
+    tmp_x = np.empty([x.shape[0], x.shape[1], csp_channel_num * 2, 0])
+    # TODO: 多频带处理
+    # 准备当前csp矩阵
+    tmp_w_csp = w_csp
+    tmp_w_csp = np.concatenate([tmp_w_csp[:, 0:csp_channel_num], tmp_w_csp[:, -csp_channel_num:]], axis=1)
+    csp_x = np.matmul(x[:, :, :], tmp_w_csp)
+    tmp_x = np.concatenate([tmp_x, tf.expand_dims(csp_x, axis=-1)], axis=-1)
+
+    return tmp_x
+
+
+def main():
+
+    w_csp = learnCSP(x_train, y_train)
+    # csp 处理数据
+    x_train = csp_dot(w_csp, x_train)
+    x_test = csp_dot(w_csp, x_test)
+    x_val = csp_dot(w_csp, x_val)

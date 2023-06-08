@@ -104,7 +104,7 @@ def MonitorParameters():
 
 def init():
     import parameters
-    from eutils.update_split_utils import cv_divide
+    from eutils.split import cv_divide
     reload(parameters)
     global args
     global isCV

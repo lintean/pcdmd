@@ -4,434 +4,139 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4ca806-d104-4562-af46-0adcd9829e15" name="Default Changelist" comment="add ecode:ICA_vi">
-      <change afterPath="$PROJECT_DIR$/ecode/ICA_vi/eeg_plot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecode/ICA_vi/ica_plot/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/peiwen.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/peiwen.iml" afterDir="false" />
+    <list default="true" id="db4ca806-d104-4562-af46-0adcd9829e15" name="Default Changelist" comment="update to new version">
+      <change afterPath="$PROJECT_DIR$/ecode/code out-of-date/CNN_csp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/CMAA/cmaa_param.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN2_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_SEoutput.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_alpha.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_clip.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_conference.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_csp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_csp_conference.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_delay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_gradient.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_normal_delay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_normal_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_normal_heatmap_attend.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_normal_test_delay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_split_25.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_split_S_before.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_split_fb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_split_normal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/CNN_with_direction.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/Ours_MulT/crossModalTransformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/Ours_MulT/modules/multihead_attention.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/Ours_MulT/modules/position_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/Ours_MulT/modules/transformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/croos_subject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/crossModalTransformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/getIndexAttend.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/get_result.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/parameters_backup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/code out-of-date/train_normal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/通道注意力可视化.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/enze/data_loader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/enze/data_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/enze/preprocess.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/enze/preprocess_audio.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/enze/preprocess_audio_bak.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/enze/preprocess_bak.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/hongxu/Audio_TCN_encoder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/10s.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1TD+4CMA+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1TD+4CMA+cnn_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1TD+4CMA+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1TD+4CMA+dot_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1TD+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1TD+cnn_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1TD+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/1s.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/2TD+4CMA+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/2TD+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/2cma+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/2cma+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/4CMA+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/4cm_selfatt_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/4cm_selfatt_origin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/4cma+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/4cma+dot_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/4cma+textCNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/CNN_baseline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/affine_grid+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_CNN_4cm_dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_16.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_TD.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_TD4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_TD4_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_TD_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_notcsp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_4cm_t_dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cm_textCNN_origin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/cs_CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/dot_baseline_delay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/lstm+4cma+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/lstm+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/lstm+dot1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/lstm+dot2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/mds+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/mix.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/mix_CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/par_CNN1103A2_CM2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/stn+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/textCNN_baseline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/tfm_textCNN_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/tfm_textCNN_origin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/会议方向.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cm+textCNN/试着去掉语音.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cma_param_cnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cma_params_explo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cma_self.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cma_ssim.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cnn_similarity.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/cm_70_csp16维_singlehead.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/cm_enze_传统.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/cm_heatmap_temp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/cm_textCNN_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_70_csp16维.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_70_csp16维_1卷积.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_70_csp16维_baseline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_70_csp16维_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_eight.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_eight_51.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_fifth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_first.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_fourth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_nine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_second.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_seven.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_six.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_six_try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_six_try_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_six_try_pic.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_six_try_temp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_six_try_try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_third.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/crossmodal/crossmodal_third_bak.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/05_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/1_clean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/1_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/2_clean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/2_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/5_clean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/5_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/DTU.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/.ipynb_checkpoints/data prepro-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/.ipynb_checkpoints/data_pre-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/device_to_use.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/TSNEUtil.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/audio.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/container.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/data_loader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/data_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/hongxu/Audio_TCN_encoder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/keras/container.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/keras/train_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/lsnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/lsnn_stbp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/position_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/rate_encoders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/snn/container.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/snn/snn_energy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/snn_encoder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/snn_layers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/snn_layers_stbp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/snn_lstm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/snn_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/split_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/subFunCSP.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/torch/container.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/torch/train_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/torch/util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/eutils/util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/10s.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1TD+4CMA+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1TD+4CMA+cnn_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1TD+4CMA+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1TD+4CMA+dot_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1TD+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1TD+cnn_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1TD+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/1s.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/2TD+4CMA+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/2TD+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/2cma+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/2cma+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/4CMA+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/4cm_selfatt_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/4cm_selfatt_origin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/4cma+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/4cma+dot_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/4cma+textCNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/CNN_baseline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/affine_grid+CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_CNN_4cm_dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_16.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_TD.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_TD4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_TD4_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_TD_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_notcsp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_4cm_t_dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cm_textCNN_origin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/cs_CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/dot_baseline_delay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/lstm+4cma+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/lstm+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/lstm+dot1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/lstm+dot2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/mds+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/mix.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/mix_CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/par_CNN1103A2_CM2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/stn+dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/textCNN_baseline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/tfm_textCNN_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/tfm_textCNN_origin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/会议方向.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cm+textCNN/试着去掉语音.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cma.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cma_encoder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cma_param.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cma_param_cnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cma_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cma_self.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cma_ssim.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/cnn_similarity.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/cm_70_csp16维_singlehead.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/cm_enze_传统.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/cm_heatmap_temp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/cm_textCNN_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_70_csp16维.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_70_csp16维_1卷积.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_70_csp16维_baseline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_70_csp16维_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_eight.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_eight_51.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_fifth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_first.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_fourth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_nine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_second.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_seven.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_six.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_six_try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_six_try_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_six_try_pic.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_six_try_temp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_six_try_try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_third.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/models/CMA/crossmodal/crossmodal_third_bak.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/modules/multihead_attention.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/modules/position_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/modules/transformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/multiple_train.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/parameters.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/parameters/05_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/parameters/2_clean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/parameters/2_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/parms_bak/05_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/parms_bak/2_clean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/parms_bak/2_sep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/test/peiwen_bak/train.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN plus/cnn plus v1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN plus/cnn plus v2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN plus/cnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN/CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/CNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/SCUT/preproc_update.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/SCUT/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/SCUT/preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/ICA_vi/ica_plot/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/ICA_vi/ica_vi.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/LSTMSNN/lstm_norm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/LSTM_SA/model_pic.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/LSTM_SA/snn_power.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/LSTM_SA/snn_visual.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_SpikeClassifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_feature_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/STDP_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/main_Caltech.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MNIST_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MNIST_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MNIST_feature_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/STDP_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/SpikeClassifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/main_MNIST.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/DNN_rwcp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_feature_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/STDP_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/main_rwcp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/rwcp_SpikeClassifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/DNN_tidigit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/STDP_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_feature_extractor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/main_tidigit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/tidigit_SpikeClassifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/cln2sep.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/cos_analysis.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/cos_analysis.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/read_audio.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/statistics.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/fcn/Code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/fcn/Generator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/fcn/process_fcn_result.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/fcn/run_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/modules_gpu/multihead_attention.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/modules_gpu/position_embedding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/modules_gpu/transformer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/modules_normal/multihead_attention.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/modules_normal/position_embedding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/modules_normal/transformer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/multiband/mb_paper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/multiband/plot_compute_csd.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/multiband/process_coherence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/multiband/run_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/GraduationDesign.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/other.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/Demo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/functional.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/mp_demo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/neural_networks.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/snn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/snn1/visualization.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/test/test.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/tsne/tsne_start.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecode/tsne/tsne_start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/util/lsnn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/util/snn_layers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/util/snn_layers_stbp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/util/snn_lstm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/visual_circos/circos.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/visual_circos/pic.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/TSNEUtil.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/tsne.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/container.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/container.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/keras/container.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/keras/train_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/lsnn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/lsnn_stbp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/position_embedding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/data_loader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/data_split.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/db_preprocess_update.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/preprocess_audio_bak.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/backup/preprocess_audio_bak.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/preprocess_bak.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/backup/preprocess_bak.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/rate_encoders.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/snn_encoder.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/snn_layers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/snn_layers_stbp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/snn_lstm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/snn_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/split_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/subFunCSP.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/subFunCSP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/torch/container.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/torch/container.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/torch/train_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/torch/update_train_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/torch/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/update_split_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/split.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/CMA/cma.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/cmaa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/CMA/cma_param.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/CMA/cma_plus.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/cmaa_plus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/CNN/CNN_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/CNN_audio.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/CNN/CNN_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/CNN_param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN/CNN_visual.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/1 BS.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Template/scut_parameters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/LSTM_v3_run.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/cnn_keras.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_bsa.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param_update.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_subjects.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_update.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/scut.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/LSTM_SA/scut.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/scut_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/2l.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/LSTM_v3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/TSNEUtil.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/container.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/data_loader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/data_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/enze/data_loader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/enze/data_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/enze/preprocess.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/enze/preprocess_bak.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/lsnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/lsnn_stbp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/position_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/rate_encoders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/snn_encoder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/snn_layers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/snn_layers_stbp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/snn_lstm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/snn_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/split_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/subFunCSP.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/training/eutils/util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb18_140_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb18_140_2_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_140_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_140_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_140_2_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_140_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_140_3_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_350_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_70_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_70_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/fb/fb_70_2_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/enze_140_SE_fbcsp_reset2_3_911.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result1/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result1/enze_70_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result1/peiwen_140_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result1/peiwen_140_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result1/peiwen_70_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result1/peiwen_70_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result2/enze_140_SE_fbcsp_reset2_High.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result2/enze_140_SE_fbcsp_reset2_Low.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result2/enze_140_SE_fbcsp_reset2_No.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result3/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result3/enze_350_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result3/enze_700_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result3/enze_70_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result4/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result4/enze_140_SE_fbcsp_reset2_2_1018.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result4/enze_140_SE_fbcsp_reset2_2_19.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result4/enze_140_SE_fbcsp_reset2_3_1018.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result4/enze_140_SE_fbcsp_reset2_3_19.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result5/enze_140_Mix_32C_SE.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result5/enze_140_No_32C_SE.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result5/enze_70_Mix_32C_SE.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/final test/result5/enze_70_No_32C_SE.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result again/SE2_tsne.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result again/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result again/enze_140_SE_fbcsp_reset2_3_1318.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result again/enze_140_SE_fbcsp_reset2_3_16.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result again/peiwen_140_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result again/peiwen_140_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 2.0/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 2.0/enze_70_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 2.0/peiwen_140_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 2.0/peiwen_140_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 2.0/peiwen_70_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 2.0/peiwen_70_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 bak/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 bak/peiwen_140_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1 bak/peiwen_140_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1/enze_70_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1/peiwen_140_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1/peiwen_140_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1/peiwen_70_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result1/peiwen_70_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result2 again/enze_140_SE_fbcsp_reset2_High.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result2 again/enze_140_SE_fbcsp_reset2_Low.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result2 again/enze_140_SE_fbcsp_reset2_No.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result2/enze_140_SE_fbcsp_reset2_High.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result2/enze_140_SE_fbcsp_reset2_Low.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result2/enze_140_SE_fbcsp_reset2_No.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result3/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result3/enze_350_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result3/enze_700_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result3/enze_70_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result4/enze_140_SE_fbcsp_reset2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result4/enze_140_SE_fbcsp_reset2_2_1018.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result4/enze_140_SE_fbcsp_reset2_2_19.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result4/enze_140_SE_fbcsp_reset2_3_1018.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/result4/enze_140_SE_fbcsp_reset2_3_19.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代SE/enze_140_SE_csp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代SE/enze_140_SE_fbcsp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代SE/enze_140_SE_fbcsp_1012.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代SE/enze_140_SE_fbcsp_1315.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代SE/enze_140_SE_fbcsp_1618.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代SE/enze_140_SE_fbcsp_79.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总/parameters1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总/parameters2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总/parameters3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总/peiwen_140_No_1_CSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总/peiwen_140_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总/peiwen_140_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总2/parameters1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总2/parameters2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总2/parameters3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总2/peiwen_140_No_1_CSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总2/peiwen_140_No_1_FBCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/SE paper/新时代汇总2/peiwen_140_No_1_NOTCSP_e.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Template/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Template/dtu_or_kul_parameters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Template/update.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/DTU_linear_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/DTU_linear_visual.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/KUL_conv_fft_mm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/KUL_conv_fft_sm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/KUL_linear.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/KUL_linear_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/KUL_linear_plus_plus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/KUL_linear_visual.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/fft_4cma_ifft_timecos.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/hilbert_4cma_cnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/hilbert_4cma_timecos.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/kul_mm_half.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/kul_mm_half_combine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn_2cma.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn_heatmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn_multiple_multiple.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn_multiple_single.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn_se.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn_single_multiple.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_cnn_single_single.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_dot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_multiple_multiple.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_plus_multiple_multiple.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_plus_without_cnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_self.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/multi-band_try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/multihead_try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/scut_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/会议方向.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/time delay/fcn_reg/fcn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/time delay/regresstion/dot_baseline_regression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/CNN/inception.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/inception.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/CNN/inception_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/inception_param.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/BSAnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/BSAnet_param.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_power.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/outdated_BSAnet_power.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/outdated_BSAnet_visual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/scut.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/BSAnet_param_scut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Template/dtu_or_kul_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Template/dtu_or_kul_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Template/scut_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Template/scut_parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/multi-band/[final]DTU_linear.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/multi-band/[final]KUL_linear.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_paper_param.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/multi-band/multiband.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/multi-band/multiband.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/multi-band/multiband_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/multi-band/multiband_param.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/multi-band/multiband_update.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/multi-band/scut.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/multi-band/multiband_param_scut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/multihead_attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/modules/multihead_attention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/modules/transformer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multiple_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multiple_train_update.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -460,16 +165,15 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/eutils/preproc/preprocess_audio.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/models/CMA/cma_param.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/CMAA/cmaa_param.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/models/CMA/cma_plus.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/eutils/update_split_utils.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/models/LSTM_SA/lstm_v3.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/CMAA/cmaa_plus.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/eutils/split.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/db/SCUT/SCUT.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/BSAnet/BSAnet.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/parameters.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/eutils/torch/container.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/eutils/torch/update_train_utils.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/db/SCUT/SCUT.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/eutils/split_utils.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/eutils/torch/train.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -488,13 +192,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/models/Template/scut_parameters.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param.py" />
+    <property name="settings.editor.selected.configurable" value="IntelliLang.Configuration" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/models/Template/scut_parameters.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -505,11 +209,11 @@
       <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\eutils\preproc" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\school\origin\EEG\eutils\preproc\backup" />
+      <recent name="E:\school\origin\EEG\models\CMA\" />
       <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\db\SCUT" />
       <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG" />
       <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\config" />
-      <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\eutils\snn\STBP" />
-      <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\ecode\util" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -652,9 +356,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="E:\Anaconda\envs\pytorch10\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -674,9 +378,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="E:\Anaconda\envs\pytorch18\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -806,9 +510,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="E:\Anaconda\envs\pytorch18\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ecode/GraduationDesign" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -971,7 +675,8 @@
       <workItem from="1684484548878" duration="1119000" />
       <workItem from="1684820246403" duration="27841000" />
       <workItem from="1685192923983" duration="14655000" />
-      <workItem from="1686056083609" duration="6917000" />
+      <workItem from="1686056083609" duration="19489000" />
+      <workItem from="1686225055001" duration="7574000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1684821002917</created>
@@ -1022,7 +727,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685203648469</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update to new version">
+      <created>1686158841602</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1686158841602</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1051,7 +763,8 @@
     <MESSAGE value="Fix the problem of parameter passing in multi-process operation" />
     <MESSAGE value="Fix the problem that the overlap in SplitMeta does not default to None" />
     <MESSAGE value="add ecode:ICA_vi" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ecode:ICA_vi" />
+    <MESSAGE value="update to new version" />
+    <option name="LAST_COMMIT_MESSAGE" value="update to new version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1077,22 +790,17 @@
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ecode/visual_circos/test.py</url>
-          <line>116</line>
-          <option name="timeStamp" value="111" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/eutils/keras/train_utils.py</url>
           <line>31</line>
           <option name="timeStamp" value="199" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/eutils/preproc/preprocess_audio_bak.py</url>
+          <url>file://$PROJECT_DIR$/eutils/preproc/backup/preprocess_audio_bak.py</url>
           <line>232</line>
           <option name="timeStamp" value="307" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/eutils/preproc/preprocess_audio_bak.py</url>
+          <url>file://$PROJECT_DIR$/eutils/preproc/backup/preprocess_audio_bak.py</url>
           <line>259</line>
           <option name="timeStamp" value="311" />
         </line-breakpoint>
@@ -1107,7 +815,7 @@
           <option name="timeStamp" value="326" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/LSTM_SA/lstm_v3_power.py</url>
+          <url>file://$PROJECT_DIR$/models/BSAnet/outdated_BSAnet_power.py</url>
           <line>260</line>
           <option name="timeStamp" value="337" />
         </line-breakpoint>
@@ -1142,14 +850,9 @@
           <option name="timeStamp" value="377" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/db/SCUT/preproc_update.py</url>
-          <line>104</line>
-          <option name="timeStamp" value="387" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/db/SCUT/preproc_update.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="395" />
+          <url>file://$PROJECT_DIR$/models/CMAA/cmaa.py</url>
+          <line>257</line>
+          <option name="timeStamp" value="409" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1175,7 +878,7 @@
     <SUITE FILE_PATH="coverage/1_sep_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1679318081883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mb_plus_without_cnn_py$Demo.coverage" NAME="Demo 覆盖结果" MODIFIED="1646639329877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/GraduationDesign" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$0_5.coverage" NAME="0.5 覆盖结果" MODIFIED="1666702335224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Document/wechat/WeChat Files/wxid_eko059vksxg222/FileStorage/File/2022-10" />
-    <SUITE FILE_PATH="coverage/scut_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1686147541135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scut_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1686228842587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mb_plus_without_cnn_py$run_model.coverage" NAME="run_model 覆盖结果" MODIFIED="1642323774497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$tsne_start.coverage" NAME="tsne_start 覆盖结果" MODIFIED="1654531311638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/tsne" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$train.coverage" NAME="train 覆盖结果" MODIFIED="1678120002007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

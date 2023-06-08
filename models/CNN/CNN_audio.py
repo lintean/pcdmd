@@ -5,15 +5,15 @@ from eutils.torch.container import AADModel
 
 
 class Model(nn.Module):
-    def __init__(self, args):
+    def __init__(self, local):
         super(Model, self).__init__()
-        self.args = args
+        self.local = local
         self.conv_output_channel = 5
         self.conv_eeg_audio_number = 1
         self.output_fc_number = self.conv_eeg_audio_number * self.conv_output_channel
 
         self.conference_CNN = nn.Sequential(
-            nn.Conv1d(args.channel_number, self.conv_output_channel, 17),
+            nn.Conv1d(local.data_meta.chan_num, self.conv_output_channel, 17),
             nn.ReLU()
         )
         self.pool1d = nn.AdaptiveAvgPool1d(1)

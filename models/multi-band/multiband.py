@@ -108,9 +108,9 @@ class MultiheadAttention(nn.Module):
 
 
 class Model(nn.Module):
-    def __init__(self, args):
+    def __init__(self, local):
         super().__init__()
-        self.args = args
+        self.args = local
         self.conv_output_channel = 10
         self.conv_eeg_audio_number = 4
         self.output_fc_number = self.conv_eeg_audio_number * self.conv_output_channel
@@ -118,17 +118,18 @@ class Model(nn.Module):
         self.channel = [10, 14, 14, 10]
         self.q_size = [10, 320, 320, 10]
         self.kv_size = [320, 10, 10, 320]
-        self.ofc_channel = args.audio_band * args.eeg_band
+        self.ofc_channel = local.data_meta.wav_band * local.data_meta.eeg_band
 
         self.output_fc = nn.Sequential(
             nn.Linear(self.ofc_channel * 2, self.ofc_channel), nn.ReLU(),
             nn.Linear(self.ofc_channel, 2), nn.Sigmoid()
         )
 
-        self.window_cp = math.floor(args.window_length / 2)
+        win_len = local.split_meta.time_len * local.data_meta.eeg_fs
+        self.window_cp = math.floor(win_len / 2)
 
-        self.channel_num = [args.audio_band, args.eeg_band, args.audio_band]
-        self.channel_origin = [args.audio_channel_per_band, args.eeg_channel_per_band, args.audio_channel_per_band]
+        self.channel_num = [local.data_meta.wav_band, local.data_meta.eeg_band, local.data_meta.wav_band]
+        self.channel_origin = [local.data_meta.wav_band_chan, local.data_meta.eeg_band_chan, local.data_meta.wav_band_chan]
         self.channel_target = [1, 1, 1]
         self.eeg_change = nn.ModuleList([
             nn.ModuleList([
@@ -229,7 +230,7 @@ def get_model(args: DotMap) -> AADModel:
         optim=optimizer,
         sched=scheduler,
         warmup=warmup_scheduler,
-        dev=torch.device(get_gpu_with_max_memory(gpu_list))
+        dev=torch.device("cpu")
     )
 
     # scheduler = [torch.optim.lr_scheduler.ExponentialLR(optimzer[0], gamma=0.999), torch.optim.lr_scheduler.ExponentialLR(optimzer[1], gamma=0.999)]

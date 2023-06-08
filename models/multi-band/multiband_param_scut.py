@@ -29,7 +29,7 @@ args.data_name = "/SCUT_test"
 args.data_document_path = cfg.origin_data_document + args.data_name
 args.database = db.get_db_from_name(args.data_name)
 
-args.label = "BSAnet"
+args.label = "multiband"
 args.ConType = ["No"]
 args.names = [f"S{i + 1}" for i in range(args.database.subj_number)]
 args.random_seed = time.time()
@@ -40,14 +40,7 @@ args.random_seed = time.time()
 args.model_path 为该次训练所使用模型。args.model_path = "models.CNN.CNN"表示使用项目目录下models/CNN/CNN.py的模型进行训练
 args.model_meta 为需要传递给模型初始化的参数。默认为空
 """
-args.model_path = "models.LSTM_SA.lstm_v3"
-args.model_meta = DotMap(
-    need_sa=True,
-    snn_process=True,
-    vth=0.5,
-    tau_mem=0.25,
-    tau_syn=0.25
-)
+args.model_path = f"models.multi-band.multiband_update"
 
 """
 定义训练流程
@@ -68,9 +61,9 @@ args.max_epoch 为最大迭代次数。args.max_epoch = 100代表训练会在达
 args.lr 为学习率
 args.early_patience 为early stop参数。注：因版本迭代，early stop代码已丢失，需手动实现。
 """
-args.batch_size = 32
-args.max_epoch = 50
-args.lr = 1e-3
+args.batch_size = 16
+args.max_epoch = 100
+args.lr = 2e-4
 args.early_patience = 0
 
 """
@@ -94,13 +87,18 @@ args.preproc_meta 为PreprocMeta结构，里面的参数不需要全部给出。
     )
 """
 args.preproc_meta = PreprocMeta(
-    eeg_lf=1,
-    eeg_hf=32,
+    eeg_lf=[1],
+    eeg_hf=[50],
     wav_lf=1,
-    wav_hf=32,
-    label_type="direction",
-    need_voice=False,
-    ica=True
+    wav_hf=50,
+    label_type="speaker",
+    need_voice=True,
+    ica=True,
+    internal_fs=8000,
+    gl=100,
+    gh=8000,
+    space=3,
+    is_combine=False
 )
 
 """
@@ -117,8 +115,8 @@ args.split_meta 为SplitMeta结构，里面的参数不需要全部给出。
     )
 """
 args.split_meta = SplitMeta(
-    time_len=1,
-    time_lap=0.2,
+    time_len=0.25,
+    time_lap=0.25,
     # overlap=0 if tl < 0.5 else None,
     tes_pct=0.2,
     valid_pct=0

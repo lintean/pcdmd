@@ -6,9 +6,9 @@ from eutils.util import get_gpu_with_max_memory
 
 
 class Model(nn.Module):
-    def __init__(self, args):
+    def __init__(self, local):
         super(Model, self).__init__()
-        self.args = args
+        self.local = local
         self.conv_output_channel = 10
 
         self.bn = nn.BatchNorm2d(1)

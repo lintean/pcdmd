@@ -25,11 +25,11 @@ args.ConType 为选用数据的声学环境，如果ConType = ["No", "Low", "Hig
 args.names 一般需要设置，是一个数组，包含 multiple_train 一次训练需要跑的被试。如果args.names=['S1']则multiple_train仅会跑第一个被试
 args.random_seed 是该次训练所使用的随机种子
 """
-args.data_name = "/SCUT_test"
+args.data_name = "/KUL_single_single_clean_1to32_new"
 args.data_document_path = cfg.origin_data_document + args.data_name
 args.database = db.get_db_from_name(args.data_name)
 
-args.label = "BSAnet"
+args.label = "CMAA"
 args.ConType = ["No"]
 args.names = [f"S{i + 1}" for i in range(args.database.subj_number)]
 args.random_seed = time.time()
@@ -40,14 +40,14 @@ args.random_seed = time.time()
 args.model_path 为该次训练所使用模型。args.model_path = "models.CNN.CNN"表示使用项目目录下models/CNN/CNN.py的模型进行训练
 args.model_meta 为需要传递给模型初始化的参数。默认为空
 """
-args.model_path = "models.LSTM_SA.lstm_v3"
+args.model_path = "models.CMAA.cmaa_plus"
 args.model_meta = DotMap(
-    need_sa=True,
-    snn_process=True,
-    vth=0.5,
-    tau_mem=0.25,
-    tau_syn=0.25
+    transformer=False,
+    cma_layer=1,
+    h=16,
+    encoder=False
 )
+
 
 """
 定义训练流程
@@ -56,7 +56,7 @@ args.proc_steps 为该次训练（包含测试）的流程。是一个数组，�
 更改args.proc_steps可以改变训练（包含测试）的流程
 """
 args.proc_steps = [
-    preproc, trails_split, hold_on_divide,
+    read_data, select_labels, trails_split, cv_divide, neg_samples_add, rept_win_remove,
     get_model, get_data_loader, trainer, save, tester
 ]
 
@@ -68,8 +68,8 @@ args.max_epoch 为最大迭代次数。args.max_epoch = 100代表训练会在达
 args.lr 为学习率
 args.early_patience 为early stop参数。注：因版本迭代，early stop代码已丢失，需手动实现。
 """
-args.batch_size = 32
-args.max_epoch = 50
+args.batch_size = 8
+args.max_epoch = 100
 args.lr = 1e-3
 args.early_patience = 0
 
@@ -93,14 +93,10 @@ args.preproc_meta 为PreprocMeta结构，里面的参数不需要全部给出。
         ica=True
     )
 """
+
 args.preproc_meta = PreprocMeta(
-    eeg_lf=1,
-    eeg_hf=32,
-    wav_lf=1,
-    wav_hf=32,
-    label_type="direction",
-    need_voice=False,
-    ica=True
+    need_voice=True,
+    label_type="direction"
 )
 
 """
@@ -119,7 +115,9 @@ args.split_meta 为SplitMeta结构，里面的参数不需要全部给出。
 args.split_meta = SplitMeta(
     time_len=1,
     time_lap=0.2,
-    # overlap=0 if tl < 0.5 else None,
+    # overlap=0,
+    cv_flod=5,
+    curr_flod=0,
     tes_pct=0.2,
     valid_pct=0
 )

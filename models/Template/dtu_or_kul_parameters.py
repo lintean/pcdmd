@@ -1,10 +1,10 @@
 import math
 import ecfg as cfg
 import eutils.util as util
-from eutils.update_split_utils import *
+from eutils.split import *
 from dotmap import DotMap
 import time
-from eutils.torch.update_train_utils import *
+from eutils.torch.train import *
 from eutils.container import PreprocMeta
 import db
 
@@ -62,7 +62,7 @@ args.proc_steps = [
 
 args.batch_size 为批大小
 args.max_epoch 为最大迭代次数。args.max_epoch = 100代表训练会在达到100次epoch后停止
-args.lr = 1e-3 为学习率
+args.lr 为学习率
 args.early_patience 为early stop参数。注：因版本迭代，early stop代码已丢失，需手动实现。
 """
 args.batch_size = 32
@@ -90,13 +90,24 @@ args.preproc_meta 为PreprocMeta结构，里面的参数不需要全部给出。
         ica=True
     )
 """
-
 args.preproc_meta = PreprocMeta(
     need_voice=False,
     label_type="direction"
 )
 
-# split meta
+"""
+划分窗口、划分数据集的参数
+
+args.split_meta 为SplitMeta结构，里面的参数不需要全部给出。
+    args.split_meta = SplitMeta(
+        time_len=1,
+        overlap=0,
+        cv_flod=5,
+        curr_flod=0,
+        tes_pct=0.2,
+        valid_pct=0
+    )
+"""
 args.split_meta = SplitMeta(
     time_len=1,
     # time_lap=0,
@@ -107,7 +118,11 @@ args.split_meta = SplitMeta(
     valid_pct=0
 )
 
-# 可视化选项 列表为空表示不希望可视化
+"""
+用于可视化的参数
+
+这部分代码可能需要手动修改
+"""
 args.visualization_epoch = []
 args.visualization_window_index = []
 

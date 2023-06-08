@@ -11,23 +11,26 @@
 # 读取数据，包含脑电信号、音频信号和标签信息
 import copy
 import os
+from typing import List
 
 import mne
+import numpy as np
 import scipy.io
 from mne.preprocessing import ICA, corrmap
 from scipy import signal
 from scipy.io import wavfile
 from scipy.signal import hilbert, butter
 from ..database import db_path as folder_path
-from .SCUT import scut_eeg_fs, scut_label, trail_number, channel_names_scut
+from .SCUT import scut_eeg_fs, scut_label, trail_number, channel_names_scut, SCUTMeta, scut_remove_trail
 from .util import *
 
 montage_dict = {'SCUT': 'standard_1020'}
 fs_dict = {'SCUT': scut_eeg_fs}
 
 
-def preprocess(dataset_name, sub_id, l_freq: int = 1, h_freq=50, is_ica=True, time_len=1, label_type='speaker',
-                     window_lap=128, need_voice=True):
+def preprocess(dataset_name="SCUT", sub_id="1", eeg_lf: int or List[int] = 1, eeg_hf: int or List[int] = 32,
+                wav_lf: int or List[int] = 1, wav_hf: int or List[int] = 32,
+               ica=True, label_type='speaker', need_voice=True, *args, **kwargs):
     """
     读取数据库的数据，经过ICA去伪迹，然后带通滤波，最后输出标准的样本及标签
     Args:
@@ -38,31 +41,73 @@ def preprocess(dataset_name, sub_id, l_freq: int = 1, h_freq=50, is_ica=True, ti
         is_ica: 是否进行ICA处理
 
     Returns:
-        eeg：列表，每个列表包含1个Trail的脑电数据，每个Trail为Time*Channels
-        voice：列表，每个列表包含1个Trail的语音数据，每个Trail为Time*2。第一列为左侧音频，第二列为右侧音频
-        label：列表，每个列表包含1个Trail的标签，每个标签包含[方位、讲话者]，均以0、1标记。
+        eeg：list，each item is a trail: np.array[Time*Channels]
+        voice：list，each item is a trail: list[np.array(Time*Channels)], the first one is attend
+        label：list，each item is a trail: list[方位、讲话者]，以0、1标记
 
     """
 
-    print(sub_id)
+    if isinstance(eeg_lf, int) and isinstance(eeg_hf, int):
+        eeg_lf, eeg_hf = [eeg_lf], [eeg_hf]
+    if isinstance(wav_lf, int) and isinstance(wav_hf, int):
+        wav_lf, wav_hf = [wav_lf], [wav_hf]
 
     # 加载数据
     eeg, voice, label = data_loader(dataset_name, sub_id)
+    meta = SCUTMeta
 
     # 分别处理脑电、语音、label
-    eeg = preprocess_eeg(eeg, dataset_name, l_freq, h_freq, is_ica)
-    voice = preprocess_voice(voice, label, l_freq, h_freq, label_type) if need_voice else None
+    eegs, voices = [], []
+    if need_voice:
+        for idx in range(len(wav_lf)):
+            voices.append(preprocess_voice(voice.copy(), label, wav_lf[idx], wav_hf[idx], label_type, *args, **kwargs))
+
+        meta["wav_band"] = voices[0][0][0].shape[-1]
+        meta["wav_band_chan"] = 1
+        voice_data = []
+        for trail_idx in range(len(voices[0])):
+            trail_data = []
+            for audio_idx in range(len(voices[0][trail_idx])):
+                audio_data = []
+                for idx in range(len(voices)):
+                    audio_data.append(voices[idx][trail_idx][audio_idx])
+                audio_data = np.concatenate(audio_data, axis=-1)
+                trail_data.append(audio_data)
+            voice_data.append(trail_data)
+        voices = voice_data
+    else:
+        voices = None
+    voice = voices
+
+    for idx in range(len(eeg_lf)):
+        eegs.append(preprocess_eeg(eeg.copy(), dataset_name, eeg_lf[idx], eeg_hf[idx], ica, *args, **kwargs))
+    meta["eeg_band"] = len(eeg_lf)
+    meta["eeg_band_chan"] = eegs[0][0].shape[-1]
+    eeg_data = []
+    for trail_idx in range(len(eegs[0])):
+        trail_data = []
+        for idx in range(len(eegs)):
+            trail_data.append(eegs[idx][trail_idx])
+        trail_data = np.concatenate(trail_data, axis=-1)
+        eeg_data.append(trail_data)
+    eeg = eeg_data
     label = select_label(label, label_type)
 
-    # 数据分窗，data：N*Time*Channel，label：N*2
-    # eeg, voice, label, split_index = list_data_split(eeg, voice, label, time_len, window_lap)
+    meta["subj_id"] = sub_id
+    if sub_id in scut_remove_trail:
+        meta["trail_num"] = meta["trail_num"] - len(scut_remove_trail[sub_id])
+    meta["eeg_fs"] = 128
+    meta["wav_fs"] = 128
+    meta["wav_chan"] = meta["wav_band"] * meta["wav_band_chan"]
+    meta["eeg_chan"] = meta["eeg_band"] * meta["eeg_band_chan"]
+    meta["chan_num"] = meta["eeg_chan"] + meta["wav_chan"]
 
-    return eeg, voice, [label]
+    return eeg, voice, label, meta
 
 
-def preprocess_eeg(eeg, dataset_name, l_freq: int = 1, h_freq=50, is_ica=True):
+def preprocess_eeg(eeg, dataset_name, l_freq: int = 1, h_freq=50, ica=True, *args, **kwargs):
     # 脑电数据预处理（ICA）
-    eeg = ica_eeg(eeg, dataset_name) if is_ica else eeg
+    eeg = ica_eeg(eeg, dataset_name) if ica else eeg
 
     # 滤波过程， 采样率降低为128Hz
     eeg = filter_eeg(eeg, dataset_name, l_freq, h_freq)
@@ -70,10 +115,9 @@ def preprocess_eeg(eeg, dataset_name, l_freq: int = 1, h_freq=50, is_ica=True):
     return eeg
 
 
-def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speaker'):
+def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speaker', *args, **kwargs):
     # 语音数据预处理（希尔伯特变换、p-law、滤波）
-    voice_fs = 128
-    voice = filter_voice(voice, l_freq=l_freq, h_freq=h_freq, fs=voice_fs, is_hilbert=True, is_p_law=True)
+    voice = filter_voice(voice, l_freq=l_freq, h_freq=h_freq, *args, **kwargs)
 
     if label_type == "direction":
         pass
@@ -89,6 +133,7 @@ def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speak
 def data_loader(dataset_name, sub_id):
     """
     读取原始数据。
+    输出的音频的第一个是左边，第二个是右边
     Args:
         dataset_name: 数据库名称
         sub_id: 需要提取的受试者编号
@@ -149,7 +194,7 @@ def data_loader(dataset_name, sub_id):
         data_len.append(int(eeg[k_tra].shape[0] / fs_eeg))
         data_len.append(int(len(voice[k_tra][0]) / fs_voice))
         data_len.append(int(len(voice[k_tra][1]) / fs_voice))
-        data_len.append(50)
+        data_len.append(55)
 
         # 计算最短的数据时长（秒）
         min_len = min(data_len)
@@ -165,7 +210,8 @@ def data_loader(dataset_name, sub_id):
     return eeg, voice, label
 
 
-def filter_voice(voice, l_freq, h_freq, fs, is_hilbert=True, is_p_law=True, internal_fs=8000, gl=150, gh=4000, space=1.5):
+def filter_voice(voice, l_freq, h_freq, fs=128, is_hilbert=True, is_p_law=True, internal_fs=8000, gl=150, gh=4000,
+                 space=1.5, is_combine=True, *args, **kwargs):
     """
     语音数据预处理。包含希尔伯特变换、p-law变换和带通滤波（含降采样）
     :param voice: 原始的语音数据，列表形式，每个Trail为Time*2
@@ -216,11 +262,21 @@ def filter_voice(voice, l_freq, h_freq, fs, is_hilbert=True, is_p_law=True, inte
             total_voice.append(sub_voice)
 
         # 合起来
-        length = len(total_voice[0][0])
-        my_voice = [np.zeros(length), np.zeros(length)]
-        for i in range(len(total_voice)):
-            my_voice[0] += total_voice[i][0]
-            my_voice[1] += total_voice[i][1]
+        if is_combine:
+            length = len(total_voice[0][0])
+            my_voice = [np.zeros(length), np.zeros(length)]
+            for i in range(len(total_voice)):
+                my_voice[0] += total_voice[i][0]
+                my_voice[1] += total_voice[i][1]
+            my_voice[0] = my_voice[0][..., None]
+            my_voice[1] = my_voice[1][..., None]
+        else:
+            my_voice = [[], []]
+            for i in range(len(total_voice)):
+                my_voice[0].append(total_voice[i][0])
+                my_voice[1].append(total_voice[i][1])
+            my_voice[0] = np.stack(my_voice[0], axis=-1)
+            my_voice[1] = np.stack(my_voice[1], axis=-1)
 
         # 标准化
         my_voice[0] = (my_voice[0] - np.average(my_voice[0])) / np.std(my_voice[0])
