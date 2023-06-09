@@ -8,3 +8,4 @@
 2023/3/17 15:40   lintean      1.0         None
 '''
 from .DTU import *
+from .preprocess import preprocess as dtu_preproc

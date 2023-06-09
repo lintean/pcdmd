@@ -11,69 +11,114 @@
 # 读取数据，包含脑电信号、音频信号和标签信息
 import copy
 import os
+from typing import List
 
 import mne
+import numpy as np
 import scipy.io
 from mne.preprocessing import ICA, corrmap
 from scipy import signal
 from scipy.io import wavfile
 from scipy.signal import hilbert, butter
-from db.database import db_path as folder_path
-from db.SCUT.SCUT import scut_eeg_fs, scut_label, trail_number, channel_names_scut
+from .DTU import dtu_eeg_fs, dtu_audio_fs, dtu_label, trail_number, channel_names_scut, DTUMeta, name
 from .util import *
 
-montage_dict = {'SCUT': 'standard_1020'}
-fs_dict = {'SCUT': scut_eeg_fs}
+dataset_name = name
+path = "../AAD_SCUT"
+montage = 'standard_1020'
+fs = dtu_eeg_fs
 
 
-def preprocess(dataset_name, sub_id, l_freq: int = 1, h_freq=50, is_ica=True, time_len=1, label_type='speaker',
-                     window_lap=128, need_voice=True):
+def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] = 1, eeg_hf: int or List[int] = 32,
+                wav_lf: int or List[int] = 1, wav_hf: int or List[int] = 32,
+               ica=True, label_type='speaker', need_voice=True, *args, **kwargs):
     """
     读取数据库的数据，经过ICA去伪迹，然后带通滤波，最后输出标准的样本及标签
     Args:
-        dataset_name: 数据库名称
+        dataset_path: 数据库路径
         sub_id: 需要提取的受试者编号
         l_freq: 带通滤波器参数，低频下限
         h_freq: 带通滤波器参数，高通上限
         is_ica: 是否进行ICA处理
 
     Returns:
-        eeg：列表，每个列表包含1个Trail的脑电数据，每个Trail为Time*Channels
-        voice：列表，每个列表包含1个Trail的语音数据，每个Trail为Time*2。第一列为左侧音频，第二列为右侧音频
-        label：列表，每个列表包含1个Trail的标签，每个标签包含[方位、讲话者]，均以0、1标记。
+        eeg：list，each item is a trail: np.array[Time*Channels]
+        voice：list，each item is a trail: list[np.array(Time*Channels)], the first one is attend
+        label：list，each item is a trail: list[方位、讲话者]，以0、1标记
 
     """
+    global path
+    path = dataset_path
 
-    print(sub_id)
+    if isinstance(eeg_lf, int) and isinstance(eeg_hf, int):
+        eeg_lf, eeg_hf = [eeg_lf], [eeg_hf]
+    if isinstance(wav_lf, int) and isinstance(wav_hf, int):
+        wav_lf, wav_hf = [wav_lf], [wav_hf]
 
     # 加载数据
-    eeg, voice, label = data_loader(dataset_name, sub_id)
+    eeg, voice, label = data_loader(sub_id)
+    meta = DTUMeta
 
     # 分别处理脑电、语音、label
-    eeg = preprocess_eeg(eeg, dataset_name, l_freq, h_freq, is_ica)
-    voice = preprocess_voice(voice, label, l_freq, h_freq, label_type) if need_voice else None
+    eegs, voices = [], []
+    if need_voice:
+        for idx in range(len(wav_lf)):
+            voices.append(preprocess_voice(voice.copy(), label, wav_lf[idx], wav_hf[idx], label_type, *args, **kwargs))
+
+        meta["wav_band"] = voices[0][0][0].shape[-1]
+        meta["wav_band_chan"] = 1
+        voice_data = []
+        for trail_idx in range(len(voices[0])):
+            trail_data = []
+            for audio_idx in range(len(voices[0][trail_idx])):
+                audio_data = []
+                for idx in range(len(voices)):
+                    audio_data.append(voices[idx][trail_idx][audio_idx])
+                audio_data = np.concatenate(audio_data, axis=-1)
+                trail_data.append(audio_data)
+            voice_data.append(trail_data)
+        voices = voice_data
+    else:
+        voices = None
+    voice = voices
+
+    for idx in range(len(eeg_lf)):
+        eegs.append(preprocess_eeg(eeg.copy(), eeg_lf[idx], eeg_hf[idx], ica, *args, **kwargs))
+    meta["eeg_band"] = len(eeg_lf)
+    meta["eeg_band_chan"] = eegs[0][0].shape[-1]
+    eeg_data = []
+    for trail_idx in range(len(eegs[0])):
+        trail_data = []
+        for idx in range(len(eegs)):
+            trail_data.append(eegs[idx][trail_idx])
+        trail_data = np.concatenate(trail_data, axis=-1)
+        eeg_data.append(trail_data)
+    eeg = eeg_data
     label = select_label(label, label_type)
 
-    # 数据分窗，data：N*Time*Channel，label：N*2
-    # eeg, voice, label, split_index = list_data_split(eeg, voice, label, time_len, window_lap)
+    meta["subj_id"] = sub_id
+    meta["eeg_fs"] = 128
+    meta["wav_fs"] = 128
+    meta["wav_chan"] = meta["wav_band"] * meta["wav_band_chan"]
+    meta["eeg_chan"] = meta["eeg_band"] * meta["eeg_band_chan"]
+    meta["chan_num"] = meta["eeg_chan"] + meta["wav_chan"]
 
-    return eeg, voice, label, split_index
+    return eeg, voice, label, meta
 
 
-def preprocess_eeg(eeg, dataset_name, l_freq: int = 1, h_freq=50, is_ica=True):
+def preprocess_eeg(eeg, l_freq: int = 1, h_freq=50, ica=True, *args, **kwargs):
     # 脑电数据预处理（ICA）
-    eeg = ica_eeg(eeg, dataset_name) if is_ica else eeg
+    eeg = ica_eeg(eeg) if ica else eeg
 
     # 滤波过程， 采样率降低为128Hz
-    eeg = filter_eeg(eeg, dataset_name, l_freq, h_freq)
+    eeg = filter_eeg(eeg, l_freq, h_freq)
 
     return eeg
 
 
-def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speaker'):
+def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speaker', *args, **kwargs):
     # 语音数据预处理（希尔伯特变换、p-law、滤波）
-    voice_fs = 128
-    voice = filter_voice(voice, l_freq=l_freq, h_freq=h_freq, fs=voice_fs, is_hilbert=True, is_p_law=True)
+    voice = filter_voice(voice, l_freq=l_freq, h_freq=h_freq, *args, **kwargs)
 
     if label_type == "direction":
         pass
@@ -86,11 +131,11 @@ def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speak
     return voice
 
 
-def data_loader(dataset_name, sub_id):
+def data_loader(sub_id):
     """
     读取原始数据。
+    输出的音频的第一个是左边，第二个是右边
     Args:
-        dataset_name: 数据库名称
         sub_id: 需要提取的受试者编号
 
     """
@@ -98,50 +143,12 @@ def data_loader(dataset_name, sub_id):
 
     # 建立数据存储空间
     if dataset_name == 'SCUT':
-        # 加载语音数据
-        for k_tra in range(trail_number):
-            tmp_voice = []
-            voice_path = f'{folder_path}/AAD_{dataset_name}_new/clean/Trail{int(k_tra + 1)}.wav'
-            tmp, my_voice = wavfile.read(voice_path)
-            my_voice = np.array(my_voice)
-            for k_voice_track in range(2):
-                voice_track = my_voice[:, k_voice_track]
-                voice_track = voice_track.tolist()
-                while voice_track[-1] == 0:
-                    voice_track.pop()
-                tmp_voice.append(voice_track)
-            voice.append(tmp_voice)
-
-        # 加载脑电数据
-        data_path = f'{folder_path}/AAD_{dataset_name}/S{sub_id}/'
-        files = os.listdir(data_path)
-        files = sorted(files)  # 按顺序，避免label不同
-        for file in files:
-            # 输入格式化
-            data_mat = scipy.io.loadmat(data_path + file)
-            for k_tra in range(data_mat['Markers'].shape[1] // 3):
-                k_sta = data_mat['Markers'][0, 3 * k_tra + 2][3][0][0]
-                # 避免Trail中断
-                if len(data_mat['Markers'][0]) > 3 * k_tra + 3:
-                    k_end = data_mat['Markers'][0, 3 * k_tra + 3][3][0][0]
-                else:
-                    k_end = len(data_mat[channel_names_scut[0]]) - 1
-
-                tmp_eeg = np.zeros((k_end - k_sta, 64))
-                for k_cha in range(len(channel_names_scut)):
-                    tmp_eeg[:, k_cha] = data_mat[channel_names_scut[k_cha]][k_sta:k_end, 0]
-                eeg.append(tmp_eeg)
-
-        label = copy.deepcopy(scut_label)
-        voice, label = scut_order(voice, label, sub_id)
-
-        # 处理异常的Trail，比如不完全的Trail等
-        eeg, voice, label = scut_remove(eeg, voice, label, sub_id)
+        pass
     else:
-        raise ValueError('数据库名称错误：“dataset_name”不属于已知数据库（KUL、DTU、SCUT）')
+        raise ValueError('数据库名称错误：“dataset_name”不属于已知数据库（SCUT）')
 
-    fs_eeg = fs_dict[dataset_name]
-    fs_voice = 44100
+    fs_eeg = fs
+    fs_voice = dtu_audio_fs
 
     # 数据裁剪
     for k_tra in range(len(eeg)):
@@ -165,7 +172,8 @@ def data_loader(dataset_name, sub_id):
     return eeg, voice, label
 
 
-def filter_voice(voice, l_freq, h_freq, fs, is_hilbert=True, is_p_law=True, internal_fs=8000, gl=150, gh=4000, space=1.5):
+def filter_voice(voice, l_freq, h_freq, fs=128, is_hilbert=True, is_p_law=True, internal_fs=8000, gl=150, gh=4000,
+                 space=1.5, is_combine=True, *args, **kwargs):
     """
     语音数据预处理。包含希尔伯特变换、p-law变换和带通滤波（含降采样）
     :param voice: 原始的语音数据，列表形式，每个Trail为Time*2
@@ -216,11 +224,21 @@ def filter_voice(voice, l_freq, h_freq, fs, is_hilbert=True, is_p_law=True, inte
             total_voice.append(sub_voice)
 
         # 合起来
-        length = len(total_voice[0][0])
-        my_voice = [np.zeros(length), np.zeros(length)]
-        for i in range(len(total_voice)):
-            my_voice[0] += total_voice[i][0]
-            my_voice[1] += total_voice[i][1]
+        if is_combine:
+            length = len(total_voice[0][0])
+            my_voice = [np.zeros(length), np.zeros(length)]
+            for i in range(len(total_voice)):
+                my_voice[0] += total_voice[i][0]
+                my_voice[1] += total_voice[i][1]
+            my_voice[0] = my_voice[0][..., None]
+            my_voice[1] = my_voice[1][..., None]
+        else:
+            my_voice = [[], []]
+            for i in range(len(total_voice)):
+                my_voice[0].append(total_voice[i][0])
+                my_voice[1].append(total_voice[i][1])
+            my_voice[0] = np.stack(my_voice[0], axis=-1)
+            my_voice[1] = np.stack(my_voice[1], axis=-1)
 
         # 标准化
         my_voice[0] = (my_voice[0] - np.average(my_voice[0])) / np.std(my_voice[0])
@@ -230,31 +248,30 @@ def filter_voice(voice, l_freq, h_freq, fs, is_hilbert=True, is_p_law=True, inte
     return voice
 
 
-def ica_eeg(eeg, dataset_name):
+def ica_eeg(eeg):
     """
     对数据进行ICA处理，去伪迹，同时去除50Hz工频干扰
     Args:
         eeg: 原始输入数据
-        dataset_name: 数据库的名称
     Returns:
         data: 处理后的数据
 
     """
 
-    ica_dict = {'SCUT': [0, 1]}  # 手动选择的ICA成分
+    ica_dict = [0, 1]  # 手动选择的ICA成分
 
     # 准备电极信息
-    info = set_info(dataset_name)
+    info = set_info()
 
     # 加载模板数据（S1-Trail1）
-    eeg_tmp, voice_tmp, label_tmp = data_loader(dataset_name, '1')
+    eeg_tmp, voice_tmp, label_tmp = data_loader('1')
     eeg_tmp = eeg_tmp[0]
     eeg_tmp = np.transpose(eeg_tmp, (1, 0))
 
     # 计算ica通道
     raw_tmp = mne.io.RawArray(eeg_tmp[0:64, :], info)
     raw_tmp = raw_tmp.filter(l_freq=1, h_freq=None)
-    raw_tmp.set_montage(montage_dict[dataset_name])
+    raw_tmp.set_montage(montage)
     ica_tmp = ICA(n_components=20, max_iter='auto', random_state=97)
     ica_tmp.fit(raw_tmp)
 
@@ -278,7 +295,7 @@ def ica_eeg(eeg, dataset_name):
         # 模板匹配法剔除眼电伪迹
         ica_exclude = []
         ica_s = [ica_tmp, ica]
-        eog_channels = ica_dict[dataset_name]  # 选取眼电通道
+        eog_channels = ica_dict  # 选取眼电通道
         for k_ica in range(len(eog_channels)):
             corrmap(ica_s, template=(0, eog_channels[k_ica]), threshold=0.9, label=str(k_ica), plot=False,
                     verbose=is_verbose)
@@ -301,12 +318,11 @@ def ica_eeg(eeg, dataset_name):
     return eeg
 
 
-def filter_eeg(eeg, dataset_name, l_freq, h_freq):
+def filter_eeg(eeg, l_freq, h_freq):
     """
     对数据进行滤波处理，并降低采样率到128Hz（标准化的采样率）
     Args:
         eeg: 去伪迹后的数据
-        dataset_name: 数据库名称
         l_freq:带通滤波的低频范围
         h_freq:带通滤波的高频范围
 
@@ -315,13 +331,9 @@ def filter_eeg(eeg, dataset_name, l_freq, h_freq):
 
     """
 
-    # # 建立空矩阵储存数据
-    # points_num = int(eeg.shape[1] / fs_dict[dataset_name] * 128)
-    # # data_resample = np.empty((0, 64, points_num))
-
     # 滤波
     is_verbose = True
-    info = set_info(dataset_name)
+    info = set_info()
     for k_tra in range(len(eeg)):
         print(f'data filter, trail: {k_tra}')
 
@@ -350,30 +362,20 @@ def filter_eeg(eeg, dataset_name, l_freq, h_freq):
     return eeg
 
 
-def set_info(dataset_name, is_add=False):
+def set_info():
     """
     设置电极信号（用于mne的数据格式转换）
-    Args:
-        dataset_name:数据库名称
-        is_add: DTU 是否需要额外的通道数量。
 
     Returns:
           info：通道数据等
 
     """
 
-    if dataset_name == 'SCUT':
-        ch_names = channel_names_scut
-    else:
-        ch_names = mne.channels.make_standard_montage(montage_dict[dataset_name]).ch_names
+    ch_names = channel_names_scut
     ch_types = list(['eeg' for _ in range(len(ch_names))])
 
-    if dataset_name == 'DTU' and is_add:
-        ch_names = ch_names + ['ecg1', 'ecg2', 'eog1', 'eog2', 'eog3', 'eog4', 'eog5', 'eog6']
-        ch_types = ch_types + ['ecg', 'ecg', 'eog', 'eog', 'eog', 'eog', 'eog', 'eog']
-
-    info = mne.create_info(ch_names, fs_dict[dataset_name], ch_types)
-    info.set_montage(montage_dict[dataset_name])
+    info = mne.create_info(ch_names, fs, ch_types)
+    info.set_montage(montage)
 
     return info
 

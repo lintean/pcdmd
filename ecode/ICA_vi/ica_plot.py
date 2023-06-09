@@ -10,9 +10,9 @@
 import mne
 import os
 import numpy as np
-from mne.preprocessing import ICA, corrmap
+from mne.preprocessing import ICA
 from mne_icalabel import label_components
-from eutils.preproc.preprocess import data_loader, set_info, montage_dict, fs_dict
+from eutils.preproc.backup.preprocess import data_loader, set_info, montage_dict
 
 
 def makePath(path):

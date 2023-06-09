@@ -29,8 +29,13 @@ scut_label = [[0, 0], [1, 0], [0, 0], [1, 0],
          [0, 1], [1, 1], [0, 1], [1, 1],
          [1, 0], [0, 0], [1, 0], [0, 0],
          [1, 1], [0, 1], [1, 1], [0, 1]]
-scut_label = np.array(scut_label)
-scut_label = scut_label.tolist()
+label_temp = []
+for idx in range(len(scut_label)):
+    label_temp.append({
+        'direction': scut_label[idx][0],
+        'speaker': scut_label[idx][1]
+    })
+scut_label = label_temp
 
 
 # S11-S20语音和label顺序 (1-32)

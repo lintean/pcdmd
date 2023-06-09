@@ -25,11 +25,11 @@ args.ConType 为选用数据的声学环境，如果ConType = ["No", "Low", "Hig
 args.names 一般需要设置，是一个数组，包含 multiple_train 一次训练需要跑的被试。如果args.names=['S1']则multiple_train仅会跑第一个被试
 args.random_seed 是该次训练所使用的随机种子
 """
-args.data_name = "/KUL_multiple_multiple3"
+args.data_name = "/AAD_KUL"
 args.data_document_path = cfg.origin_data_document + args.data_name
 args.database = db.get_db_from_name(args.data_name)
 
-args.label = "multiband"
+args.label = "CNN"
 args.ConType = ["No"]
 args.names = [f"S{i + 1}" for i in range(args.database.subj_number)]
 args.random_seed = time.time()
@@ -40,7 +40,7 @@ args.random_seed = time.time()
 args.model_path 为该次训练所使用模型。args.model_path = "models.CNN.CNN"表示使用项目目录下models/CNN/CNN.py的模型进行训练
 args.model_meta 为需要传递给模型初始化的参数。默认为空
 """
-args.model_path = "models.multi-band.multiband"
+args.model_path = "models.CNN.CNN"
 args.model_meta = DotMap(
 
 )
@@ -53,7 +53,7 @@ args.proc_steps 为该次训练（包含测试）的流程。是一个数组，�
 更改args.proc_steps可以改变训练（包含测试）的流程
 """
 args.proc_steps = [
-    read_data, select_labels, trails_split, cv_divide,
+    preproc, select_labels, trails_split, cv_divide,
     get_model, get_data_loader, trainer, save, tester
 ]
 
@@ -65,9 +65,9 @@ args.max_epoch 为最大迭代次数。args.max_epoch = 100代表训练会在达
 args.lr 为学习率
 args.early_patience 为early stop参数。注：因版本迭代，early stop代码已丢失，需手动实现。
 """
-args.batch_size = 16
+args.batch_size = 32
 args.max_epoch = 100
-args.lr = 2e-4
+args.lr = 1e-3
 args.early_patience = 0
 
 """
@@ -92,8 +92,13 @@ args.preproc_meta 为PreprocMeta结构，里面的参数不需要全部给出。
 """
 
 args.preproc_meta = PreprocMeta(
+    eeg_lf=1,
+    eeg_hf=32,
+    wav_lf=1,
+    wav_hf=32,
+    label_type="direction",
     need_voice=True,
-    label_type="speaker"
+    ica=True
 )
 
 """
@@ -111,8 +116,8 @@ args.split_meta 为SplitMeta结构，里面的参数不需要全部给出。
 """
 args.split_meta = SplitMeta(
     time_len=1,
-    time_lap=0.25,
-    # overlap=0,
+    # time_lap=0.5,
+    overlap=0,
     cv_flod=5,
     curr_flod=0,
     tes_pct=0.2,

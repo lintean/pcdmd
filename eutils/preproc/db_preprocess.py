@@ -8,10 +8,10 @@
 2023/3/8 10:51   lintean      1.0         None
 '''
 
-from db.SCUT.preprocess import preprocess as scut_prep
+from db import scut_preproc, kul_preproc, dtu_preproc
 
 
-def preprocess(dataset_name, *args, **kwargs):
+def preprocess(dataset_name, dataset_path, *args, **kwargs):
     """
     读取数据库的数据，经过ICA去伪迹，然后带通滤波，最后输出标准的样本及标签
     Args:
@@ -29,7 +29,7 @@ def preprocess(dataset_name, *args, **kwargs):
     """
 
     datasets = ["KUL", "DTU", "SCUT"]
-    preps = [None, None, scut_prep]
+    preps = [kul_preproc, dtu_preproc, scut_preproc]
     for i in range(len(datasets)):
         if dataset_name == datasets[i]:
-            return preps[i](dataset_name, *args, **kwargs)
+            return preps[i](dataset_path, *args, **kwargs)

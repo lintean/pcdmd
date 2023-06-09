@@ -9,6 +9,36 @@
 '''
 import numpy as np
 
+
+def voice_dirct2attd(voice, label):
+    for i in range(len(voice)):
+        if label[i][0] == 1:
+            voice[i][0], voice[i][1] = voice[i][1], voice[i][0]
+    return voice
+
+
+def voice_attd2speaker(voice, label):
+    for i in range(len(voice)):
+        if label[i][1] == 1:
+            voice[i][0], voice[i][1] = voice[i][1], voice[i][0]
+    return voice
+
+
+def select_label(label, label_type):
+    nlabel = []
+    label_index = None
+    if label_type == "direction":
+        label_index = 0
+    elif label_type == "speaker":
+        label_index = 1
+    else:
+        raise ValueError('“label_type”不属于已知（direction、speaker）')
+
+    for i in range(len(label)):
+        nlabel.append(label[i][label_index])
+    return nlabel
+
+
 def _adjust_order(x, sub_id):
     from .SCUT import scut_suf_order
     if int(sub_id) > 10:
@@ -22,8 +52,8 @@ def _adjust_order(x, sub_id):
 def _reverse_label(label, sub_id):
     if int(sub_id) > 10:
         for i in range(len(label)):
-            label[i]['direction'] = 1 - label[i]['direction']
-            label[i]['speaker'] = 1 - label[i]['speaker']
+            for j in range(len(label[i])):
+                label[i][j] = 1 - label[i][j]
     return label
 
 

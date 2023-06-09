@@ -5,137 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4ca806-d104-4562-af46-0adcd9829e15" name="Default Changelist" comment="update to new version">
-      <change afterPath="$PROJECT_DIR$/ecode/code out-of-date/CNN_csp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/CMAA/cmaa_param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/DTU/preprocess.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/DTU/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/KUL/preprocess.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/KUL/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/prep_util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/SCUT/preproc_update.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/DTU/DTU.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/DTU/DTU.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/DTU/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/DTU/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/KUL/KUL.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/KUL/KUL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/KUL/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/KUL/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/SCUT/SCUT.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/SCUT/SCUT.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/SCUT/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/SCUT/preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/ICA_vi/ica_plot/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/ICA_vi/ica_vi.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/LSTMSNN/lstm_norm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/LSTM_SA/model_pic.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/LSTM_SA/snn_power.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/LSTM_SA/snn_visual.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_SpikeClassifier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/Caltech_feature_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/STDP_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/Caltech/main_Caltech.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MNIST_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MNIST_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MNIST_feature_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/STDP_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/SpikeClassifier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/MNIST/main_MNIST.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/DNN_rwcp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/RWCP_feature_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/STDP_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/main_rwcp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/RWCP/rwcp_SpikeClassifier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/DNN_tidigit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/STDP_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_ChainDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_MultiScaleDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_ParallelDeepSpikeFeatureExtractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/TIDIGITS_feature_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/main_tidigit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/MS-DSNN/TIDIGITS/tidigit_SpikeClassifier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/cln2sep.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/cos_analysis.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/cos_analysis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/read_audio.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/cma_statistics/statistics.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/fcn/Code.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/fcn/Generator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/fcn/process_fcn_result.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/fcn/run_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/modules_gpu/multihead_attention.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/modules_gpu/position_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/modules_gpu/transformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/modules_normal/multihead_attention.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/modules_normal/position_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/modules_normal/transformer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/multiband/mb_paper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/multiband/plot_compute_csd.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/multiband/process_coherence.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/multiband/run_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/GraduationDesign.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/.idea/other.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/Demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/functional.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/mp_demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/neural_networks.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/snn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/snn1/visualization.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/test/test.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/tsne/tsne_start.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecode/tsne/tsne_start.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/util/lsnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/util/snn_layers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/util/snn_layers_stbp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/util/snn_lstm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/visual_circos/circos.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecode/visual_circos/pic.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/TSNEUtil.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/tsne.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/container.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/container.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/keras/container.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/keras/train_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/lsnn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/lsnn_stbp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/position_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/preproc/data_loader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/preproc/data_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/preproc/db_preprocess_update.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/preproc/preprocess_audio_bak.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/backup/preprocess_audio_bak.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/preproc/preprocess_bak.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/backup/preprocess_bak.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/rate_encoders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/snn_encoder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/snn_layers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/snn_layers_stbp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/snn_lstm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/snn_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/split_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/subFunCSP.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/subFunCSP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/torch/container.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/torch/container.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/torch/train_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/torch/update_train_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/torch/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eutils/update_split_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/split.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cma.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/cmaa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cma_param.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CMA/cma_plus.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/cmaa_plus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN/CNN_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/CNN_audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN/CNN_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/CNN_param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN/inception.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/inception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/CNN/inception_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CNN/inception_param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/BSAnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/BSAnet_param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_power.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/outdated_BSAnet_power.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/lstm_v3_visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/outdated_BSAnet_visual.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/LSTM_SA/scut.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/BSAnet/BSAnet_param_scut.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Template/dtu_or_kul_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Template/dtu_or_kul_parameters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Template/scut_parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Template/scut_parameters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/[final]DTU_linear.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/[final]KUL_linear.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/mb_paper_param.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/multiband.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/multi-band/multiband.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/multiband_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/multi-band/multiband_param.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/multiband_update.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/multi-band/scut.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/multi-band/multiband_param_scut.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/multihead_attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/modules/multihead_attention.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/CMAA/modules/transformer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multiple_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/SCUT/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/SCUT/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/ICA_vi/eeg_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecode/ICA_vi/eeg_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecode/ICA_vi/ica_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecode/ICA_vi/ica_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/db_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/db_preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/backup/preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/preprocess_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/backup/preprocess_audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/preproc/preprocess_audio_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/preproc/backup/preprocess_audio_update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eutils/split.py" beforeDir="false" afterPath="$PROJECT_DIR$/eutils/split.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,8 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -164,16 +54,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/eutils/preproc/preprocess_audio.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/models/CMAA/cmaa_param.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/eutils/preproc/backup/preprocess_audio.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/models/CMAA/cmaa_plus.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/eutils/split.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/db/SCUT/SCUT.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/models/BSAnet/BSAnet.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/parameters.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/eutils/torch/container.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/db/SCUT/SCUT.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/eutils/torch/train.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/CMAA/cmaa_param.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/parameters.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/CMAA/cmaa_plus.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/models/BSAnet/BSAnet.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/eutils/split.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -192,7 +82,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models/Template/scut_parameters.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/db/DTU" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -202,11 +92,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\school\origin\EEG\db\DTU" />
+      <recent name="E:\school\origin\EEG\db\KUL" />
+      <recent name="E:\school\origin\EEG\db" />
       <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\ecode\ICA_vi" />
       <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\models\LSTM_SA" />
-      <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\models\multi-band" />
-      <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG" />
-      <recent name="E:\OneDrive - mail.scut.edu.cn\origin\EEG\eutils\preproc" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\school\origin\EEG\eutils\preproc\backup" />
@@ -676,7 +566,9 @@
       <workItem from="1684820246403" duration="27841000" />
       <workItem from="1685192923983" duration="14655000" />
       <workItem from="1686056083609" duration="19489000" />
-      <workItem from="1686225055001" duration="7574000" />
+      <workItem from="1686225055001" duration="11727000" />
+      <workItem from="1686298963497" duration="9201000" />
+      <workItem from="1686314567185" duration="3593000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1684821002917</created>
@@ -734,7 +626,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686158841602</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update to new version">
+      <created>1686241971333</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686241971333</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -854,6 +753,16 @@
           <line>257</line>
           <option name="timeStamp" value="409" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/eutils/split.py</url>
+          <line>123</line>
+          <option name="timeStamp" value="422" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/eutils/split.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="424" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -878,7 +787,7 @@
     <SUITE FILE_PATH="coverage/1_sep_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1679318081883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mb_plus_without_cnn_py$Demo.coverage" NAME="Demo 覆盖结果" MODIFIED="1646639329877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/GraduationDesign" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$0_5.coverage" NAME="0.5 覆盖结果" MODIFIED="1666702335224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Document/wechat/WeChat Files/wxid_eko059vksxg222/FileStorage/File/2022-10" />
-    <SUITE FILE_PATH="coverage/scut_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1686228842587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scut_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1686318814709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mb_plus_without_cnn_py$run_model.coverage" NAME="run_model 覆盖结果" MODIFIED="1642323774497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$tsne_start.coverage" NAME="tsne_start 覆盖结果" MODIFIED="1654531311638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecode/tsne" />
     <SUITE FILE_PATH="coverage/LSTM_v3_r_py$train.coverage" NAME="train 覆盖结果" MODIFIED="1678120002007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

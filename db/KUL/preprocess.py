@@ -8,7 +8,6 @@
 2022/6/24 10:00   lintean      1.0         None
 '''
 
-# 读取数据，包含脑电信号、音频信号和标签信息
 import copy
 import os
 from typing import List
@@ -17,16 +16,15 @@ import mne
 import numpy as np
 import scipy.io
 from scipy.io import wavfile
-from .SCUT import scut_eeg_fs, scut_audio_fs, scut_label, trail_number, channel_names_scut, SCUTMeta, scut_remove_trail
-from .util import *
+from .KUL import kul_eeg_fs, kul_audio_fs, kul_label, trail_number, channel_names_scut, KULMeta
 from ..prep_util import ica_eeg, filter_eeg, filter_voice, voice_dirct2attd, voice_attd2speaker
 
-ica_dict = [0, 1]
-montage = 'standard_1020'
-fs = scut_eeg_fs
+ica_dict = [0, 2]
+montage = 'biosemi64'
+fs = kul_eeg_fs
 
 
-def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] = 1, eeg_hf: int or List[int] = 32,
+def preprocess(dataset_path="../AAD_KUL", sub_id="1", eeg_lf: int or List[int] = 1, eeg_hf: int or List[int] = 32,
                 wav_lf: int or List[int] = 1, wav_hf: int or List[int] = 32,
                ica=True, label_type='speaker', need_voice=True, *args, **kwargs):
     """
@@ -56,7 +54,7 @@ def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] 
 
     # 加载数据
     eeg, voice, label = data_loader(dataset_path, sub_id)
-    meta = SCUTMeta
+    meta = KULMeta
 
     # 分别处理脑电、语音、label
     eegs, voices = [], []
@@ -95,8 +93,6 @@ def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] 
     eeg = eeg_data
 
     meta["subj_id"] = sub_id
-    if sub_id in scut_remove_trail:
-        meta["trail_num"] = meta["trail_num"] - len(scut_remove_trail[sub_id])
     meta["eeg_fs"] = 128
     meta["wav_fs"] = 128
     meta["wav_chan"] = meta["wav_band"] * meta["wav_band_chan"]
@@ -144,49 +140,33 @@ def data_loader(dataset_path, sub_id):
     """
     eeg, voice, label = [], [], []
 
-    # 加载语音数据
+    data_path = f'{dataset_path}/S{sub_id}.mat'
+    data_mat = scipy.io.loadmat(data_path)
+
     for k_tra in range(trail_number):
+        # 加载语音数据[左侧音频，右侧音频]
         tmp_voice = []
-        voice_path = f'{dataset_path}/clean/Trail{int(k_tra + 1)}.wav'
-        tmp, my_voice = wavfile.read(voice_path)
-        my_voice = np.array(my_voice)
-        for k_voice_track in range(2):
-            voice_track = my_voice[:, k_voice_track]
-            voice_track = voice_track.tolist()
-            while voice_track[-1] == 0:
-                voice_track.pop()
-            tmp_voice.append(voice_track)
+        for k_voice in range(2):
+            voice_file = data_mat['trials'][0, k_tra]['stimuli'][0][0][k_voice][0][0]
+            voice_path = f'{dataset_path}/stimuli/{voice_file}'
+            tmp_voice.append(wavfile.read(voice_path)[1])  # 加载语音数据
+        # 合并脑电数据
         voice.append(tmp_voice)
 
-    # 加载脑电数据
-    data_path = f'{dataset_path}/S{sub_id}/'
-    files = os.listdir(data_path)
-    files = sorted(files)  # 按顺序，避免label不同
-    for file in files:
-        # 输入格式化
-        data_mat = scipy.io.loadmat(data_path + file)
-        for k_tra in range(data_mat['Markers'].shape[1] // 3):
-            k_sta = data_mat['Markers'][0, 3 * k_tra + 2][3][0][0]
-            # 避免Trail中断
-            if len(data_mat['Markers'][0]) > 3 * k_tra + 3:
-                k_end = data_mat['Markers'][0, 3 * k_tra + 3][3][0][0]
-            else:
-                k_end = len(data_mat[channel_names_scut[0]]) - 1
+        # 加载脑电数据
+        tmp_eeg = data_mat['trials'][0, k_tra]['RawData'][0, 0]['EegData'][0, 0]
+        eeg.append(tmp_eeg)
 
-            tmp_eeg = np.zeros((k_end - k_sta, 64))
-            for k_cha in range(len(channel_names_scut)):
-                tmp_eeg[:, k_cha] = data_mat[channel_names_scut[k_cha]][k_sta:k_end, 0]
-            eeg.append(tmp_eeg)
-
-    label = copy.deepcopy(scut_label)
-    voice, label = scut_order(voice, label, sub_id)
-
-    # 处理异常的Trail，比如不完全的Trail等
-    eeg, voice, label = scut_remove(eeg, voice, label, sub_id)
-
+        # 加载标签数据[左右，讲话者编号]
+        lab = 0 if str(data_mat['trials'][0, k_tra]['attended_ear'][0, 0][0]) == 'L' else 1
+        tmp_label = {
+            'direction': lab,
+            'speaker': data_mat['trials'][0, k_tra]['attended_track'][0][0][0][0] - 1
+        }
+        label.append(tmp_label)
 
     fs_eeg = fs
-    fs_voice = scut_audio_fs
+    fs_voice = kul_audio_fs
 
     # 数据裁剪
     for k_tra in range(len(eeg)):
@@ -194,7 +174,7 @@ def data_loader(dataset_path, sub_id):
         data_len.append(int(eeg[k_tra].shape[0] / fs_eeg))
         data_len.append(int(len(voice[k_tra][0]) / fs_voice))
         data_len.append(int(len(voice[k_tra][1]) / fs_voice))
-        data_len.append(55)
+        data_len.append(360)
 
         # 计算最短的数据时长（秒）
         min_len = min(data_len)
@@ -219,7 +199,7 @@ def set_info():
 
     """
 
-    ch_names = channel_names_scut
+    ch_names = mne.channels.make_standard_montage(montage).ch_names
     ch_types = list(['eeg' for _ in range(len(ch_names))])
 
     info = mne.create_info(ch_names, fs, ch_types)

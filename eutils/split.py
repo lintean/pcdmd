@@ -22,7 +22,7 @@ from eutils.util import read_json
 
 def preproc(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, DotMap]:
     """
-    从恩泽师兄开发的预处理程序中读取EEG、语音以及相关的meta
+    从预处理程序中读取EEG、语音以及相关的meta
     读取EEG+语音
     @param data: 占位符
     @param args: 全局meta
@@ -31,15 +31,15 @@ def preproc(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, Dot
     """
     from eutils.preproc.db_preprocess import preprocess as preprocess
 
+    path = args.data_document_path
     datasets = ['DTU', 'KUL', 'SCUT']
-    label_types = ["direction", "speaker"]
     for dataset in datasets:
         if dataset in args.data_name:
             pm = local.preproc_meta
-            eeg, audio, labels, meta = preprocess(dataset, local.name[1:], **pm.__dict__)
+            eeg, audio, labels, meta = preprocess(dataset, path, local.name[1:], **pm.__dict__)
             meta = DataMeta(**meta)
             local.data_meta = meta
-            data = AADData(eeg=eeg, audio=audio, labels=labels, meta=meta)
+            data = AADData(eeg=eeg, audio=audio, pre_lbl=labels, meta=meta)
             return data, args, local
 
 

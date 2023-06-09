@@ -13,7 +13,7 @@ import scipy.io
 from mne.preprocessing import ICA, corrmap
 from db.database import db_path as folder_path
 from db.SCUT import scut_eeg_fs, scut_label, channel_names_scut
-from .util import *
+from eutils.preproc.util import *
 # DTU: 49.99秒，取49秒, 共计60个Trial
 # KUL: 389 - 393秒，取389秒
 
