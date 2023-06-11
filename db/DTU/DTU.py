@@ -7,16 +7,22 @@
 ------------      -------    --------    -----------
 2023/3/17 15:41   lintean      1.0         None
 '''
+
 name = "DTU"
 
 subj_number = 18
 trail_number = 20
 
 # eeg采样率
-dtu_eeg_fs = 128
+dtu_eeg_fs = 512
 
 # 语音采样率
 dtu_audio_fs = 44100
+
+# 声学环境
+# 1 = anechoic ("No"), 2 = mild reverberation ("Low"), 3 = high reverberation ("High")
+# 定义在../database
+
 
 # 方向和讲话者
 # 预处理时从文件中读取
@@ -24,7 +30,7 @@ dtu_label = []
 
 # kul通道顺序
 # 预处理时从mne中获取
-channel_names_scut = []
+channel_names_dtu = []
 
 # 数据库状态
 DTUMeta = {

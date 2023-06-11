@@ -7,12 +7,30 @@
 ------------      -------    --------    -----------
 2022/6/28 20:29   lintean      1.0         None
 '''
-from ecfg import origin_data_document
+from enum import Enum
 from .SCUT import *
 from .KUL import *
 from .DTU import *
 
-db_path = origin_data_document
+
+class AADDataset(Enum):
+    DTU: int = 1
+    KUL: int = 2
+    SCUT: int = 3
+
+
+class ConType(Enum):
+    No: int = 1
+    Low: int = 2
+    High: int = 3
+
+
+preps = {
+    AADDataset.DTU: dtu_preproc,
+    AADDataset.KUL: kul_preproc,
+    AADDataset.SCUT: scut_preproc
+}
+
 ch64 = [
     'Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T7', 'T8', 'P7', 'P8',
     'Fz', 'Cz', 'Pz', 'Oz', 'FC1', 'FC2', 'CP1', 'CP2', 'FC5', 'FC6', 'CP5', 'CP6', 'TP9', 'TP10',
@@ -46,5 +64,11 @@ ch10 = [
 def get_db_from_name(name: str):
     datasets = [KUL, DTU, SCUT]
     for dataset in datasets:
+        if dataset.name in name:
+            return dataset
+
+
+def get_aaddataset_from_name(name: str):
+    for dataset in AADDataset:
         if dataset.name in name:
             return dataset

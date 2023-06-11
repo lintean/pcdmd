@@ -26,14 +26,24 @@ montage = 'standard_1020'
 fs = scut_eeg_fs
 
 
-def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] = 1, eeg_hf: int or List[int] = 32,
-                wav_lf: int or List[int] = 1, wav_hf: int or List[int] = 32,
-               ica=True, label_type='speaker', need_voice=True, *args, **kwargs):
+def preprocess(
+        sub_id="1",
+        data_path="../AAD_SCUT",
+        eeg_lf: int or List[int] = 1, 
+        eeg_hf: int or List[int] = 32,
+        wav_lf: int or List[int] = 1, 
+        wav_hf: int or List[int] = 32,
+        ica=True, 
+        label_type='speaker', 
+        need_voice=True, 
+        *args, 
+        **kwargs
+):
     """
     读取数据库的数据，经过ICA去伪迹，然后带通滤波，最后输出标准的样本及标签
     Args:
-        dataset_path: 数据库路径
         sub_id: 需要提取的受试者编号
+        data_path: 数据库路径
         eeg_lf: 带通滤波器参数，低频下限
         eeg_hf: 带通滤波器参数，高通上限
         wav_lf：
@@ -55,7 +65,7 @@ def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] 
         wav_lf, wav_hf = [wav_lf], [wav_hf]
 
     # 加载数据
-    eeg, voice, label = data_loader(dataset_path, sub_id)
+    eeg, voice, label = data_loader(data_path, sub_id)
     meta = SCUTMeta
 
     # 分别处理脑电、语音、label
@@ -82,7 +92,7 @@ def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] 
     voice = voices
 
     for idx in range(len(eeg_lf)):
-        eegs.append(preprocess_eeg(dataset_path, eeg.copy(), eeg_lf[idx], eeg_hf[idx], ica, *args, **kwargs))
+        eegs.append(preprocess_eeg(data_path, eeg.copy(), eeg_lf[idx], eeg_hf[idx], ica, *args, **kwargs))
     meta["eeg_band"] = len(eeg_lf)
     meta["eeg_band_chan"] = eegs[0][0].shape[-1]
     eeg_data = []
@@ -106,10 +116,10 @@ def preprocess(dataset_path="../AAD_SCUT", sub_id="1", eeg_lf: int or List[int] 
     return eeg, voice, label, meta
 
 
-def preprocess_eeg(dataset_path, eeg, l_freq: int = 1, h_freq=50, ica=True, *args, **kwargs):
+def preprocess_eeg(data_path, eeg, l_freq: int = 1, h_freq: int = 32, ica: bool = True, *args, **kwargs):
     # 脑电数据预处理（ICA）
     if ica:
-        eeg_tmp, _, _ = data_loader(dataset_path, "1")
+        eeg_tmp, _, _ = data_loader(data_path, "1")
         eeg = ica_eeg(eeg, ica_dict=ica_dict, info=set_info(), montage=montage, eeg_tmp=eeg_tmp)
 
     # 滤波过程， 采样率降低为128Hz
@@ -118,7 +128,7 @@ def preprocess_eeg(dataset_path, eeg, l_freq: int = 1, h_freq=50, ica=True, *arg
     return eeg
 
 
-def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speaker', *args, **kwargs):
+def preprocess_voice(voice, label, l_freq: int = 1, h_freq: int = 32, label_type: str = 'speaker', *args, **kwargs):
     # 语音数据预处理（希尔伯特变换、p-law、滤波）
     voice = filter_voice(voice, l_freq=l_freq, h_freq=h_freq, *args, **kwargs)
 
@@ -133,12 +143,12 @@ def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speak
     return voice
 
 
-def data_loader(dataset_path, sub_id):
+def data_loader(data_path, sub_id):
     """
     读取原始数据。
     输出的音频的第一个是左边，第二个是右边
     Args:
-        dataset_path: 数据库路径
+        data_path: 数据库路径
         sub_id: 需要提取的受试者编号
 
     """
@@ -147,7 +157,7 @@ def data_loader(dataset_path, sub_id):
     # 加载语音数据
     for k_tra in range(trail_number):
         tmp_voice = []
-        voice_path = f'{dataset_path}/clean/Trail{int(k_tra + 1)}.wav'
+        voice_path = f'{data_path}/clean/Trail{int(k_tra + 1)}.wav'
         tmp, my_voice = wavfile.read(voice_path)
         my_voice = np.array(my_voice)
         for k_voice_track in range(2):
@@ -159,12 +169,12 @@ def data_loader(dataset_path, sub_id):
         voice.append(tmp_voice)
 
     # 加载脑电数据
-    data_path = f'{dataset_path}/S{sub_id}/'
-    files = os.listdir(data_path)
+    file_path = f'{data_path}/S{sub_id}/'
+    files = os.listdir(file_path)
     files = sorted(files)  # 按顺序，避免label不同
     for file in files:
         # 输入格式化
-        data_mat = scipy.io.loadmat(data_path + file)
+        data_mat = scipy.io.loadmat(file_path + file)
         for k_tra in range(data_mat['Markers'].shape[1] // 3):
             k_sta = data_mat['Markers'][0, 3 * k_tra + 2][3][0][0]
             # 避免Trail中断

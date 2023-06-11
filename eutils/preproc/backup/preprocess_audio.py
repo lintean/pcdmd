@@ -244,7 +244,7 @@ def filter_voice(voice, l_freq, h_freq, fs, is_hilbert=True, is_p_law=True, inte
     :param is_hilbert: 是否进行希尔伯特变换
     :param is_p_law: 是否进行p-law变换
     """
-    from eutils.audio import audspacebw, gammatonefir
+    from db.audio import audspacebw, gammatonefir
     fs_voice = 44100
 
     for k_tra in range(len(voice)):

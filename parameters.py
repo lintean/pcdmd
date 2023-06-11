@@ -6,7 +6,7 @@ from dotmap import DotMap
 import time
 from eutils.torch.train import *
 from eutils.container import PreprocMeta
-import db
+from db import get_db_from_name, ConType, get_aaddataset_from_name
 
 """
 全局参数容器
@@ -14,23 +14,17 @@ import db
 args = DotMap()
 
 """
-输入数据参数
-
-args.data_name为读取的数据目录名
-args.data_document_path不需要设置，为读取的数据目录路径
-args.database不需要设置，会自动根据数据目录名判断是哪个数据库，因此数据目录名必须带有数据库名称
+全局参数
 
 args.label 为该次训练的标识
-args.ConType 为选用数据的声学环境，如果ConType = ["No", "Low", "High"]，则将三种声学数据混合在一起后进行训练
-args.names 一般需要设置，是一个数组，包含 multiple_train 一次训练需要跑的被试。如果args.names=['S1']则multiple_train仅会跑第一个被试
+args.data_name为读取的数据目录名
+args.database不需要设置，会自动根据数据目录名判断是哪个数据库，因此数据目录名必须带有数据库名称
+args.names 一般不需要设置，是一个数组，包含 multiple_train 一次训练需要跑的被试。如果args.names=['S1']则multiple_train仅会跑第一个被试
 args.random_seed 是该次训练所使用的随机种子
 """
-args.data_name = "/AAD_KUL"
-args.data_document_path = cfg.origin_data_document + args.data_name
-args.database = db.get_db_from_name(args.data_name)
-
 args.label = "CNN"
-args.ConType = ["No"]
+args.data_name = "/KUL_single_single_snn_1to32_mean"
+args.database = get_db_from_name(args.data_name)
 args.names = [f"S{i + 1}" for i in range(args.database.subj_number)]
 args.random_seed = time.time()
 
@@ -53,7 +47,7 @@ args.proc_steps 为该次训练（包含测试）的流程。是一个数组，�
 更改args.proc_steps可以改变训练（包含测试）的流程
 """
 args.proc_steps = [
-    preproc, select_labels, trails_split, cv_divide,
+    read_data, select_labels, trails_split, cv_divide,
     get_model, get_data_loader, trainer, save, tester
 ]
 
@@ -90,14 +84,16 @@ args.preproc_meta 为PreprocMeta结构，里面的参数不需要全部给出。
         ica=True
     )
 """
-
 args.preproc_meta = PreprocMeta(
+    data_path=cfg.origin_data_document + args.data_name,
+    dataset=get_aaddataset_from_name(args.data_name),
+    con_type=[ConType.No],
     eeg_lf=1,
-    eeg_hf=32,
+    eeg_hf=50,
     wav_lf=1,
-    wav_hf=32,
+    wav_hf=50,
     label_type="direction",
-    need_voice=True,
+    need_voice=False,
     ica=True
 )
 
@@ -116,8 +112,8 @@ args.split_meta 为SplitMeta结构，里面的参数不需要全部给出。
 """
 args.split_meta = SplitMeta(
     time_len=1,
-    # time_lap=0.5,
-    overlap=0,
+    time_lap=0.5,
+    # overlap=0,
     cv_flod=5,
     curr_flod=0,
     tes_pct=0.2,

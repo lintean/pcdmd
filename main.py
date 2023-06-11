@@ -63,7 +63,7 @@ def init(name, log_path, local, args):
     local.model_path = args.model_path
     local.preproc_meta = args.preproc_meta
 
-    local.logger.info(f'data path: {args.data_document_path}')
+    local.logger.info(f'data path: {local.preproc_meta.data_path}')
     args.gpu_list = ecfg.gpu_list
     return local, args
 

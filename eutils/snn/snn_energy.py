@@ -24,22 +24,6 @@ def mac_ann_fc(c_in, c_out):
     return c_in * c_out
 
 
-# # def mac_snn_conv(data, kernel_size, c_in):
-# #     __time, __channel, __height, __width = data.shape
-# #     all = __channel * __height * __width
-# #     spike = np.sum(data)
-# #     R = spike / all
-# #     return R * mac_ann_conv(kernel_size, __height * __width, c_in, __channel), spike, all
-
-
-# def mac_snn_fc(data, c_in):
-#     __batch, __c_out, __time = data.shape
-#     all = __c_out * __batch
-#     spike = np.sum(data)
-#     R = spike / all
-#     return R * mac_ann_fc(c_in, __c_out) * __batch, spike, all
-
-
 def get_firing_rate(data, return_spower=False):
     if return_spower:
         return SPower(max_spikes=np.product(data.shape), spikes=np.count_nonzero(data))
@@ -56,50 +40,6 @@ def get_snn_energy(ann_power: SPower, firing_rate: SPower):
         max_spikes=firing_rate.max_spikes,
         params=ann_power.params
     )
-
-
-# def mac_rsnn_fc(data, c_in):
-#     __batch, __c_out, __time = data.shape
-#     all = __c_out * __batch
-#     spike = np.sum(data)
-#     R = spike / all
-#     return R * mac_ann_fc(c_in, __c_out) * __batch * 2, spike, all
-#
-#
-# # def energy_snn_conv(data, kernel_size, c_in):
-# #     """
-# #     计算snn中卷积层的energy 参考'Revisiting Batch Normalization for Training Low-latencyDeep Spiking Neural Networks from Scratch'
-# #     @param c_in:
-# #     @param kernel_size:
-# #     @param data: 将要计算的data shape=[time, channel, height, width]
-# #     @return: energy 或者 -1（计算失败）
-# #     """
-# #     mac, spike, all = mac_snn_conv(data=data, kernel_size=kernel_size, c_in=c_in)
-# #     return mac * snn_energy_coefficient, spike, all
-#
-#
-# def energy_snn_fc(data, c_in):
-#     """
-#     计算snn中全连接层的energy 参考'Revisiting Batch Normalization for Training Low-latencyDeep Spiking Neural Networks from Scratch'
-#     @param orig_size:
-#     @param c_in:
-#     @param data: 将要计算的data shape=[batch, feature, time]
-#     @return: energy 或者 -1（计算失败）
-#     """
-#     mac, spike, all = mac_snn_fc(data=data, c_in=c_in)
-#     return SPower(energy=mac * snn_energy_coefficient, mac=mac, spikes=int(spike), neural_num=all)
-#
-#
-# def energy_rsnn_fc(data, c_in):
-#     """
-#     计算snn中全连接层的energy 参考'Revisiting Batch Normalization for Training Low-latencyDeep Spiking Neural Networks from Scratch'
-#     @param orig_size:
-#     @param c_in:
-#     @param data: 将要计算的data shape=[batch, feature, time]
-#     @return: energy 或者 -1（计算失败）
-#     """
-#     mac, spike, all = mac_rsnn_fc(data=data, c_in=c_in)
-#     return SPower(energy=mac * snn_energy_coefficient, mac=mac, spikes=int(spike), neural_num=all)
 
 
 def energy_ann_conv(kernel_size, feature_size, c_in, c_out):

@@ -18,50 +18,49 @@ import pandas as pd
 from dotmap import DotMap
 from eutils.container import AADData, SplitMeta, DecisionWindow, DataMeta
 from eutils.util import read_json
+from db import AADDataset
 
 
 def preproc(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, DotMap]:
     """
-    从预处理程序中读取EEG、语音以及相关的meta
-    读取EEG+语音
+    根据不同的数据库，从不同预处理程序中读取EEG、语音以及相关的meta
+    读取EEG、语音、label
     @param data: 占位符
     @param args: 全局meta
     @param local: subject个人meta
     @return: (wav1, wav2, EEG), args, local; wav1 wav2 EEG shape as [ConType * trial, time, channel]
     """
-    from eutils.preproc.db_preprocess import preprocess as preprocess
+    from db import preps
 
-    path = args.data_document_path
-    datasets = ['DTU', 'KUL', 'SCUT']
-    for dataset in datasets:
-        if dataset in args.data_name:
-            pm = local.preproc_meta
-            eeg, audio, labels, meta = preprocess(dataset, path, local.name[1:], **pm.__dict__)
-            meta = DataMeta(**meta)
-            local.data_meta = meta
-            data = AADData(eeg=eeg, audio=audio, pre_lbl=labels, meta=meta)
-            return data, args, local
+    pm = local.preproc_meta
+    eeg, audio, labels, meta = preps[pm.dataset](local.name[1:], **pm.__dict__)
+    meta['con_type'] = pm.con_type
+    meta = DataMeta(**meta)
+    local.data_meta = meta
+    data = AADData(eeg=eeg, audio=audio, pre_lbl=labels, meta=meta)
+    return data, args, local
 
 
 def read_data(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, DotMap]:
     """
     从已经预处理好的数据中读取EEG、语音以及相关的meta
-    读取EEG+语音
+    读取EEG、语音、label
     @param data: 占位符
     @param args: 全局meta
     @param local: subject个人meta
     @return:
     """
 
-    path = args.data_document_path
+    pm = local.preproc_meta
+    path = pm.data_path
 
     # read metadata
     dm = read_json(f"{path}/metadata.json")
     meta = DataMeta(
-        dataset=args.database.name,
+        dataset=pm.dataset,
         subj_id=local.name[1:],
         trail_num=dm['trail_number'],
-        con_type=args.ConType,
+        con_type=pm.con_type,
         eeg_fs=dm['fs'] if 'eeg_fs' not in dm else dm['eeg_fs'],
         wav_fs=dm['fs'] if 'audio_fs' not in dm else dm['audio_fs'],
         eeg_band=dm['eeg_band'],
@@ -74,11 +73,11 @@ def read_data(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, D
     # 将不同声学环境的数据当成额外增加的trail
     eeg, audio, labels = [], [], []
     for con_type in meta.con_type:
-        label = pd.read_csv(f"{path}/csv/{local.name}{con_type.value}.csv")
+        label = pd.read_csv(f"{path}/csv/{local.name}{con_type.name}.csv")
         label = label.to_numpy()
         for k in range(meta.trail_num):
-            wav_file = f"{path}/{con_type.value}/{local.name}Tra{k + 1}_audio.csv"
-            filename = f"{path}/{con_type.value}/{local.name}Tra{k + 1}.csv"
+            wav_file = f"{path}/{con_type.name}/{local.name}Tra{k + 1}_audio.csv"
+            filename = f"{path}/{con_type.name}/{local.name}Tra{k + 1}.csv"
             data_pf = pd.read_csv(filename, header=None)
 
             if os.path.exists(wav_file):
@@ -93,12 +92,12 @@ def read_data(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, D
 
             eeg.append(EEG_data.to_numpy(dtype=np.float32))
             # DTU:0是男女信息，1是方向信息; KUL:0是方向信息，1是人物信息
-            if "KUL" == args.database.name:
+            if "KUL" == pm.dataset.name:
                 labels.append({
                     'direction': label[k][0] - 1,
                     'speaker': label[k][1] - 1
                 })
-            elif "DTU" == args.database.name:
+            elif "DTU" == pm.dataset.name:
                 labels.append({
                     'direction': label[k][1] - 1,
                     'speaker': label[k][0] - 1
@@ -106,9 +105,9 @@ def read_data(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, D
             else:
                 raise ValueError('数据库不属于已知（KUL、DTU）')
 
-            if local.preproc_meta.need_voice:
+            if pm.need_voice:
                 # 如果是KUL 先把attend换回来
-                if "KUL" == args.database.name:
+                if "KUL" == pm.dataset.name:
                     wav1, wav2 = wav2, wav1
 
                 audio.append([
@@ -116,7 +115,7 @@ def read_data(args: DotMap, local: DotMap, **kwargs) -> tuple[AADData, DotMap, D
                     wav2.to_numpy(dtype=np.float32)
                 ])
 
-    if not local.preproc_meta.need_voice:
+    if not pm.need_voice:
         audio = None
 
     local.data_meta = meta

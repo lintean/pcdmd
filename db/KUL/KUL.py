@@ -24,7 +24,7 @@ kul_label = []
 
 # kul通道顺序
 # 预处理时从mne中获取
-channel_names_scut = []
+channel_names_kul = []
 
 # 数据库状态
 KULMeta = {

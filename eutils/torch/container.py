@@ -18,25 +18,6 @@ import torch.nn.functional as func
 from ..container import DecisionWindow, DataMeta, AADModel
 
 
-# @dataclass
-# class TorchModel(AADModel):
-#     model: torch.nn.Module
-#     loss: torch.nn.Module
-#     optim: torch.optim.Optimizer
-#     sched: torch.optim.lr_scheduler.ChainedScheduler or None
-#     warmup: Any
-#     dev: torch.device
-#
-#     def __init__(self, model, loss, optim, sched=None, warmup=None, dev=torch.device("cpu")):
-#         super().__init__()
-#         self.model = model.to(dev)
-#         self.loss = loss.to(dev)
-#         self.optim = optim
-#         self.sched = sched
-#         self.warmup = warmup
-#         self.dev = dev
-
-
 class EEGDataSet(Dataset):
     def __init__(self, eeg: List[np.ndarray], audio: List[List[np.ndarray]], window: List[DecisionWindow], meta: DataMeta, dev):
         super().__init__()

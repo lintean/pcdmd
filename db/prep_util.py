@@ -7,9 +7,6 @@
 ------------      -------    --------    -----------
 2023/6/9 17:06   lintean      1.0         None
 '''
-import copy
-import os
-from typing import List
 
 import mne
 import numpy as np
@@ -29,7 +26,7 @@ def filter_voice(voice, l_freq, h_freq, original_fs=44100, fs=128, is_hilbert=Tr
     :param is_hilbert: 是否进行希尔伯特变换
     :param is_p_law: 是否进行p-law变换
     """
-    from eutils.audio import audspacebw, gammatonefir
+    from db.audio import audspacebw, gammatonefir
     fs_voice = original_fs
 
     for k_tra in range(len(voice)):
@@ -113,7 +110,7 @@ def ica_eeg(eeg, ica_dict, info, montage, eeg_tmp):
     eeg_tmp = np.transpose(eeg_tmp, (1, 0))
 
     # 计算ica通道
-    raw_tmp = mne.io.RawArray(eeg_tmp[0:64, :], info)
+    raw_tmp = mne.io.RawArray(eeg_tmp[:, :], info)
     raw_tmp = raw_tmp.filter(l_freq=1, h_freq=None)
     raw_tmp.set_montage(montage)
     ica_tmp = ICA(n_components=20, max_iter='auto', random_state=97)
@@ -129,7 +126,7 @@ def ica_eeg(eeg, ica_dict, info, montage, eeg_tmp):
         my_eeg = np.transpose(my_eeg, [1, 0])
 
         # 将原始数据转化为raw格式文件
-        raw = mne.io.RawArray(my_eeg[0:64, :], info, verbose=is_verbose)
+        raw = mne.io.RawArray(my_eeg[:, :], info, verbose=is_verbose)
 
         # 计算ica数据
         raw = raw.filter(l_freq=1, h_freq=None, verbose=is_verbose)

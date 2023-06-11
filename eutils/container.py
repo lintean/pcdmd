@@ -10,21 +10,9 @@
 from dataclasses import dataclass
 from typing import Any, List, Dict
 import numpy as np
-from enum import auto, Enum
+from db import AADDataset, ConType
 import torch
 from torch.utils.data import Dataset, DataLoader
-
-
-class AADDataset(Enum):
-    DTU: str = "DTU"
-    KUL: str = "KUL"
-    SCUT: str = "SCUT"
-
-
-class ConType(Enum):
-    No: str = "No"
-    Low: str = "Low"
-    High: str = "High"
 
 
 @dataclass
@@ -35,7 +23,7 @@ class DataMeta:
         dataset: AADDataset类型，可为"DTU"、"KUL"、"SCUT"
         subj_id: 被试的ID。如subj_id="1"为被试1
         trail_num: trail的数量。如trail_num=8
-        con_type: List[ConType]。需要读取的数据的声学环境。如con_type=["No", "Low", "High"]
+        con_type: List[ConType]。已读取的数据的声学环境。如con_type=["No", "Low", "High"]
         eeg_fs: 数据的eeg采样率。如eeg_fs=128
         wav_fs: 数据的语音采样率。如wav_fs=128
 
@@ -47,7 +35,7 @@ class DataMeta:
         wav_chan: 数据的语音的总通道数。这一项不需要手动设置，会自动计算得出。为wav_band * wav_band_chan
         chan_num: 数据的eeg和语音的总通道数。这一项不需要手动设置，会自动计算得出。为eeg_chan + wav_chan
     """
-    dataset: AADDataset = None
+    dataset: AADDataset or str = None
     subj_id: str = None
     trail_num: int = None
     con_type: List[ConType] = None
@@ -64,11 +52,11 @@ class DataMeta:
 
     def __post_init__(self):
         if not isinstance(self.dataset, AADDataset):
-            self.dataset = AADDataset(self.dataset)
+            self.dataset = AADDataset[self.dataset]
 
         for i in range(len(self.con_type)):
             if not isinstance(self.con_type[i], ConType):
-                self.con_type[i] = ConType(self.con_type[i])
+                raise ValueError("PreprocMeta的属性con_type必须为List[ConType]")
 
         self.eeg_chan = self.eeg_band * self.eeg_band_chan
         self.wav_chan = self.wav_band * self.wav_band_chan
@@ -215,6 +203,9 @@ class PreprocMeta:
     """预处理/读取数据的参数
 
     Args:
+        data_path: 数据路径
+        dataset: AADDataset类型，可为"DTU"、"KUL"、"SCUT"
+        con_type: List[ConType]。需要读取的数据的声学环境。如果con_type = [ConType.No, ConType.Low, ConType.High]，则将三种声学数据混合在一起后进行训练
         eeg_lf: 预处理中的eeg滤波下限。若训练流程中包含预处理如preproc，该属性必须被设置
         eeg_hf: 预处理中的eeg滤波上限。若训练流程中包含预处理如preproc，该属性必须被设置
         wav_lf: 预处理中的语音滤波下限。若训练流程中包含预处理如preproc，该属性必须被设置
@@ -228,6 +219,9 @@ class PreprocMeta:
         space: 预处理中 语音的gamma filter bank的滤波器组中心间隔。若需要语音预处理，该属性必须被设置
         is_combine: 预处理中 语音的gamma filter bank滤波后语音子带是否需要合并。合并则为单频带，不合并则为多频带。若需要语音预处理，该属性必须被设置
     """
+    data_path: str = None
+    dataset: AADDataset = None
+    con_type: List[ConType] = None
     eeg_lf: int or List[int] = 1
     eeg_hf: int or List[int] = 32
     wav_lf: int or List[int] = 1
@@ -240,6 +234,14 @@ class PreprocMeta:
     gh: int = 4000
     space: float = 1.5
     is_combine: bool = True
+
+    def __post_init__(self):
+        if self.con_type is None:
+            self.con_type = [ConType.No]
+
+        for i in range(len(self.con_type)):
+            if not isinstance(self.con_type[i], ConType):
+                self.con_type[i] = ConType[self.con_type[i]]
 
     def __iter__(self):
         return self.__dict__

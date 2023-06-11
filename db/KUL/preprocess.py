@@ -16,7 +16,7 @@ import mne
 import numpy as np
 import scipy.io
 from scipy.io import wavfile
-from .KUL import kul_eeg_fs, kul_audio_fs, kul_label, trail_number, channel_names_scut, KULMeta
+from .KUL import kul_eeg_fs, kul_audio_fs, kul_label, trail_number, KULMeta
 from ..prep_util import ica_eeg, filter_eeg, filter_voice, voice_dirct2attd, voice_attd2speaker
 
 ica_dict = [0, 2]
@@ -24,14 +24,24 @@ montage = 'biosemi64'
 fs = kul_eeg_fs
 
 
-def preprocess(dataset_path="../AAD_KUL", sub_id="1", eeg_lf: int or List[int] = 1, eeg_hf: int or List[int] = 32,
-                wav_lf: int or List[int] = 1, wav_hf: int or List[int] = 32,
-               ica=True, label_type='speaker', need_voice=True, *args, **kwargs):
+def preprocess(
+        sub_id="1",
+        data_path="../AAD_KUL",
+        eeg_lf: int or List[int] = 1,
+        eeg_hf: int or List[int] = 32,
+        wav_lf: int or List[int] = 1,
+        wav_hf: int or List[int] = 32,
+        ica=True,
+        label_type='speaker',
+        need_voice=True,
+        *args,
+        **kwargs
+):
     """
     读取数据库的数据，经过ICA去伪迹，然后带通滤波，最后输出标准的样本及标签
     Args:
-        dataset_path: 数据库路径
         sub_id: 需要提取的受试者编号
+        data_path: 数据库路径
         eeg_lf: 带通滤波器参数，低频下限
         eeg_hf: 带通滤波器参数，高通上限
         wav_lf：
@@ -53,7 +63,7 @@ def preprocess(dataset_path="../AAD_KUL", sub_id="1", eeg_lf: int or List[int] =
         wav_lf, wav_hf = [wav_lf], [wav_hf]
 
     # 加载数据
-    eeg, voice, label = data_loader(dataset_path, sub_id)
+    eeg, voice, label = data_loader(data_path, sub_id)
     meta = KULMeta
 
     # 分别处理脑电、语音、label
@@ -80,7 +90,7 @@ def preprocess(dataset_path="../AAD_KUL", sub_id="1", eeg_lf: int or List[int] =
     voice = voices
 
     for idx in range(len(eeg_lf)):
-        eegs.append(preprocess_eeg(dataset_path, eeg.copy(), eeg_lf[idx], eeg_hf[idx], ica, *args, **kwargs))
+        eegs.append(preprocess_eeg(data_path, eeg.copy(), eeg_lf[idx], eeg_hf[idx], ica, *args, **kwargs))
     meta["eeg_band"] = len(eeg_lf)
     meta["eeg_band_chan"] = eegs[0][0].shape[-1]
     eeg_data = []
@@ -102,10 +112,10 @@ def preprocess(dataset_path="../AAD_KUL", sub_id="1", eeg_lf: int or List[int] =
     return eeg, voice, label, meta
 
 
-def preprocess_eeg(dataset_path, eeg, l_freq: int = 1, h_freq=50, ica=True, *args, **kwargs):
+def preprocess_eeg(data_path, eeg, l_freq: int = 1, h_freq: int = 32, ica: bool = True, *args, **kwargs):
     # 脑电数据预处理（ICA）
     if ica:
-        eeg_tmp, _, _ = data_loader(dataset_path, "1")
+        eeg_tmp, _, _ = data_loader(data_path, "1")
         eeg = ica_eeg(eeg, ica_dict=ica_dict, info=set_info(), montage=montage, eeg_tmp=eeg_tmp)
 
     # 滤波过程， 采样率降低为128Hz
@@ -114,7 +124,7 @@ def preprocess_eeg(dataset_path, eeg, l_freq: int = 1, h_freq=50, ica=True, *arg
     return eeg
 
 
-def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speaker', *args, **kwargs):
+def preprocess_voice(voice, label, l_freq: int = 1, h_freq: int = 32, label_type: str = 'speaker', *args, **kwargs):
     # 语音数据预处理（希尔伯特变换、p-law、滤波）
     voice = filter_voice(voice, l_freq=l_freq, h_freq=h_freq, *args, **kwargs)
 
@@ -129,26 +139,26 @@ def preprocess_voice(voice, label, l_freq: int = 1, h_freq=50, label_type='speak
     return voice
 
 
-def data_loader(dataset_path, sub_id):
+def data_loader(data_path, sub_id):
     """
     读取原始数据。
     输出的音频的第一个是左边，第二个是右边
     Args:
-        dataset_path: 数据库路径
+        data_path: 数据库路径
         sub_id: 需要提取的受试者编号
 
     """
     eeg, voice, label = [], [], []
 
-    data_path = f'{dataset_path}/S{sub_id}.mat'
-    data_mat = scipy.io.loadmat(data_path)
+    file = f'{data_path}/S{sub_id}.mat'
+    data_mat = scipy.io.loadmat(file)
 
     for k_tra in range(trail_number):
         # 加载语音数据[左侧音频，右侧音频]
         tmp_voice = []
         for k_voice in range(2):
             voice_file = data_mat['trials'][0, k_tra]['stimuli'][0][0][k_voice][0][0]
-            voice_path = f'{dataset_path}/stimuli/{voice_file}'
+            voice_path = f'{data_path}/stimuli/{voice_file}'
             tmp_voice.append(wavfile.read(voice_path)[1])  # 加载语音数据
         # 合并脑电数据
         voice.append(tmp_voice)
